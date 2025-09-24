@@ -3,8 +3,9 @@ import PowerBILogo from '/skills/PowerBI.svg'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import ExcelLogo from '/skills/Excel.png'
 import MicrosoftPQLogo from '/skills/microsoft-power-query.png'
+import DaxLogo from '/skills/dax.svg'
 
-interface ProjectProps {
+export interface ProjectProps {
     id: number
     name: string
     description: string
@@ -68,7 +69,7 @@ export const projects: ProjectProps[] = [
                 <img src={MicrosoftPQLogo} alt="Microsoft Power Query Logo" className={iconSize} />,
                 <img src={PowerBILogo} alt="Power BI Logo" className={iconSize} />,
                 <img src={ExcelLogo} alt="Excel Logo" className={iconSize} />,
-                // <img src={DaxLogo} alt="DAX Logo" className="w-8 h-8" />,
+                <img src={DaxLogo} alt="DAX Logo" className={iconSize} />,
             ]
         },
     },
@@ -93,7 +94,7 @@ export const projects: ProjectProps[] = [
             name: ['Power BI', 'Power Query', 'DAX'],
             icons: [<img src={MicrosoftPQLogo} alt="Microsoft Power Query Logo" className={iconSize} />,
                 <img src={PowerBILogo} alt="Power BI Logo" className={iconSize} />,
-                // <img src={DaxLogo} alt="DAX Logo" className="w-8 h-8" />,
+                <img src={DaxLogo} alt="DAX Logo" className={iconSize} />,
             ]
         },
     },

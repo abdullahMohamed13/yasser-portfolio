@@ -15,10 +15,11 @@ import PowerBILogo from '/skills/PowerBI.svg'
 import ExcelLogo from '/skills/Excel.png'
 import MicrosoftPQLogo from '/skills/microsoft-power-query.png'
 import SQLLogo from '/skills/sql.svg'
+import DaxLogo from '/skills/dax.svg'
 
 // ICONS
 import { Badge } from "@/components/ui/badge";
-import { FaGithub } from "react-icons/fa"; // FaLanguage
+import { FaGithub } from "react-icons/fa";
 import { MdOutlineIntegrationInstructions, MdWorkOutline, MdLanguage } from "react-icons/md";
 
 const iconSize = 'h-10 w-10'
@@ -55,7 +56,11 @@ const tabs = [
         {
           name: 'SQL',
             icon: <img src={SQLLogo} className={iconSize} alt="SQL Logo" />
-        }
+        },
+        {
+          name: 'DAX',
+            icon: <img src={DaxLogo} className={iconSize} alt="DAX Logo" />
+        },
     ]
   },
   {
