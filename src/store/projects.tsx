@@ -10,16 +10,28 @@ export interface ProjectProps {
     name: string
     description: string
     imgSrc: string[]
-    // description: string
+    detailedDescription?: string
     links: {
         name: string,
         href: string,
         icon: React.ReactNode
     }[]
     techStack: {
-        name: string[],
-        icons: React.ReactNode[]
+        name: string
+        icon: React.ReactNode
+    }[]
+    skillsDemonstrated?: {
+        key: string
+        value: string
+    }[]
+    KPIs?: {
+        img: string;
+        items: {
+            key: string
+            value: string
+        }[]
     }
+    businessValue?: string[]
 }
 
 const linkedinIcon = (
@@ -52,6 +64,7 @@ export const projects: ProjectProps[] = [
         name: 'Comprehensive Sales Performance Dashboard!',
         imgSrc: ['/projects/2.jpeg'],
         description: 'Interactive dashboard that transforms complex sales data into actionable business insights.',
+        detailedDescription: "This interactive Sales Dashboard was built in Power BI to analyze and monitor key business performance metrics. It provides a clear view of sales performance, profitability, discount impact, and customer trends, allowing stakeholders to make data-driven decision",
         links: [
             {
                 name: 'github repo',
@@ -63,15 +76,65 @@ export const projects: ProjectProps[] = [
                 href: 'https://www.linkedin.com/posts/yasser-allam-4b02ab331_powerbi-dataanalytics-businessintelligence-activity-7368121539352813569-GtPJ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEeKCYUB2f05TmAQBvRvCLK8mgQqJSaN2fg',
                 icon: linkedinIcon
         }],
-        techStack: {
-            name: ['Power BI', 'Power Query', 'DAX', 'Excel'],
-            icons: [
-                <img src={MicrosoftPQLogo} alt="Microsoft Power Query Logo" className={iconSize} />,
-                <img src={PowerBILogo} alt="Power BI Logo" className={iconSize} />,
-                <img src={ExcelLogo} alt="Excel Logo" className={iconSize} />,
-                <img src={DaxLogo} alt="DAX Logo" className={iconSize} />,
-            ]
-        },
+        techStack: [
+            {
+                name: 'PQ',
+                icon: <img src={MicrosoftPQLogo} alt="Microsoft Power Query Logo" className={iconSize} />
+            },
+            {
+                name: 'Power BI',
+                icon: <img src={PowerBILogo} alt="Power BI Logo" className={iconSize} />,
+            },
+            {
+                name: 'Excel',
+                icon: <img src={ExcelLogo} alt="Excel Logo" className={iconSize} />
+            },
+            {
+                name: 'DAX',
+                icon: <img src={DaxLogo} alt="DAX Logo" className={iconSize} />
+            },
+            ],
+        skillsDemonstrated: [
+            {
+                key: 'Data Cleaning & Preparation',
+                value: '(Excel → Power BI integration)',
+            },
+            {
+                key: 'Data Transformation (ETL) with Power Query',
+                value: 'Cleaned, shaped, and prepared the raw data for analysis by handling blanks, changing data types, and creating new columns.',
+            },
+            {
+                key: 'Basic Data Modeling',
+                value: '(Table Relationships)',
+            },
+            {
+                key: 'Data Modeling & DAX calculations',
+                value: 'using relationships and Formulated measures to derive key insights and KPIS like Total sales, total profit and orders count.',
+            },
+            {
+                key: 'Core Charts',
+                value: 'Utilized Column, Bar, Line, scatter chart and tables',
+            },
+            {
+                key: 'KPI Indicators & Tables',
+                value: 'Used Cards to display key metrics and Tables to provide granular, sortable data.',
+            },
+        ],
+        KPIs: {
+            img: '/projects/project-2-kpis.png',
+            items: [
+                {key: 'Total Sales', value: '2.3M'},
+                {key: 'Total Profit', value: '286K'},
+                {key: 'Total Quantity', value: '38K'},
+                {key: 'Total Shipping Cost', value: '226K'},
+                {key: 'Cost of Goods Sold', value: '1.69M'},
+                {key: 'Discount Value', value: '323K'},
+            ]},
+        businessValue: ['Identify top-performing products, categories, and regions',
+            'Detect unprofitable products and reevaluate discount strategies',
+            'Focus investments on high-growth markets',
+            'Improve profitability by aligning pricing and promotions with data insights'
+        ]
     },
     
     {
@@ -79,6 +142,7 @@ export const projects: ProjectProps[] = [
         name: 'Power BI dashboard',
         imgSrc: ['/projects/1-1.jpeg', '/projects/1-2.jpeg'],
         description: 'A comprehensive Data Jobs Dashboard for job seekers, career transitioners, and market researchers',
+        detailedDescription: '',
         links: [
             {
                 name: 'github repo',
@@ -90,12 +154,25 @@ export const projects: ProjectProps[] = [
                 href: 'https://www.linkedin.com/posts/yasser-allam-4b02ab331_powerbi-datavisualization-businessintelligence-activity-7365237367600828417-J9Qg?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEeKCYUB2f05TmAQBvRvCLK8mgQqJSaN2fg',
                 icon: linkedinIcon
         }],
-        techStack: {
-            name: ['Power BI', 'Power Query', 'DAX'],
-            icons: [<img src={MicrosoftPQLogo} alt="Microsoft Power Query Logo" className={iconSize} />,
-                <img src={PowerBILogo} alt="Power BI Logo" className={iconSize} />,
-                <img src={DaxLogo} alt="DAX Logo" className={iconSize} />,
-            ]
-        },
+        techStack: [
+            {
+                name: 'PQ',
+                icon: <img src={MicrosoftPQLogo} alt="Microsoft Power Query Logo" className={iconSize} />,
+            },
+            {
+                name: 'Power BI',
+                icon: <img src={PowerBILogo} alt="Power BI Logo" className={iconSize} />,
+            },
+            {
+                name: 'DAX',
+                icon:<img src={DaxLogo} alt="DAX Logo" className={iconSize} />,
+            },
+        ],
+        skillsDemonstrated: [
+            {
+                key: '',
+                value: '',
+            }
+        ]
     },
 ]

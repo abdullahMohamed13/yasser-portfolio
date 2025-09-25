@@ -9,9 +9,10 @@ import {
 } from "@/components/ui/dialog";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useNavigate } from "react-router-dom";
-import { FaExternalLinkAlt } from 'react-icons/fa'
+import { FaExpandArrowsAlt } from 'react-icons/fa'
 import { Badge } from "@/components/ui/badge";
 import { type ProjectProps } from "@/store/projects";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 export default function ProjectCard({id, imgSrc, name, description, links, techStack}: ProjectProps) {
     const navigate = useNavigate()
@@ -22,7 +23,7 @@ export default function ProjectCard({id, imgSrc, name, description, links, techS
                     onClick={() => navigate(`/projects/${id}`)}
                     className="group absolute top-2 right-2 border border-border shadow-2xl p-2 rounded-3xl cursor-pointer"
                 >
-                    <FaExternalLinkAlt
+                    <FaExpandArrowsAlt
                         title="Show Project Details"
                         size={14}
                         className="group-hover:text-destructive transition-colors"
@@ -34,7 +35,7 @@ export default function ProjectCard({id, imgSrc, name, description, links, techS
 
             <Dialog>
                 <DialogTrigger>
-                    <img src={imgSrc[0]} className="cursor-pointer"
+                    <img src={imgSrc[0]} className="rounded-md cursor-pointer"
                     title="Show Picture" alt="Project Image" />
                 </DialogTrigger>
                 <DialogContent>
@@ -67,10 +68,15 @@ export default function ProjectCard({id, imgSrc, name, description, links, techS
                 <div> 
                     <Badge variant='outline'>Used Tech Stack:</Badge>
                     <div className="flex gap-2 justify-center items-center">
-                        {techStack.icons.map((icon, index) => {
-                            return <i key={index}>
-                                {icon}
-                            </i>
+                        {techStack.map((stack, index) => {
+                            return <Tooltip key={index}>
+                                    <TooltipTrigger>
+                                        {stack.icon}
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        {stack.name}
+                                    </TooltipContent>
+                                </Tooltip>
                         })}
                     </div>
                 </div>
