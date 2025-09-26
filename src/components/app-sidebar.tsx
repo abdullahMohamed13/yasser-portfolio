@@ -36,7 +36,7 @@ export function AppSidebar() {
 
           <div className='flex items-center gap-1'>
             <TypingText
-              text={["Data Analyst", "Data Engineer", "Programmer"]}
+              text={["Data Analyst", "Programmer"]}
               typingSpeed={75}
               pauseDuration={1500}
               showCursor={true}
