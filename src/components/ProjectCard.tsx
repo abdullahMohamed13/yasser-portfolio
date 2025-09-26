@@ -16,11 +16,11 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 export default function ProjectCard({id, imgSrc, name, description, links, techStack}: ProjectProps) {
     const navigate = useNavigate()
-    return <Card key={id} className="relative hover:shadow-xl transition-shadow">
+    return <Card key={id} className="relative hover:scale-102 transition-all hover:shadow-xl">
         <CardHeader className="flex flex-col">
-                <CardTitle className="self-start text-lg leading-5.5">{name}</CardTitle>
+                <CardTitle className="text-lg leading-5.5">{name}</CardTitle>
                 <CardAction
-                    onClick={() => navigate(`/projects/${id}`)}
+                    onClick={() => navigate(`/projects/${name}`)}
                     className="group absolute top-2 right-2 border border-border shadow-2xl p-2 rounded-3xl cursor-pointer"
                 >
                     <FaExpandArrowsAlt
@@ -33,32 +33,36 @@ export default function ProjectCard({id, imgSrc, name, description, links, techS
 
         <CardContent className="flex flex-col gap-3">
 
-            <Dialog>
-                <DialogTrigger>
-                    <img src={imgSrc[0]} className="rounded-md cursor-pointer"
-                    title="Show Picture" alt="Project Image" />
-                </DialogTrigger>
-                <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>{name}</DialogTitle>
-                    </DialogHeader>
-                    <Carousel>
-                        <CarouselContent>
-                            {imgSrc.map((src) => {
-                                return <CarouselItem>
-                                        <img src={src} key={src} alt="Project Image"/>
-                                </CarouselItem>
-                            })}
-                        </CarouselContent>
-                        {imgSrc.length === 1 ? '' : (
-                            <>
-                                <CarouselPrevious className="-mx-[15px]" />
-                                <CarouselNext className="-mx-[15px]" />
-                            </>
-                        )}
-                    </Carousel>
-                </DialogContent>
-            </Dialog>
+            <img src={imgSrc[0]} alt="Project Image" className="md:hidden rounded-md" />
+
+            <div className="hidden md:flex">
+                <Dialog>
+                    <DialogTrigger>
+                        <img src={imgSrc[0]} className="rounded-md cursor-pointer"
+                        title="Show Picture" alt="Project Image" />
+                    </DialogTrigger>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>{name}</DialogTitle>
+                        </DialogHeader>
+                        <Carousel>
+                            <CarouselContent>
+                                {imgSrc.map((src, index) => {
+                                    return <CarouselItem>
+                                            <img src={src} key={index} alt="Project Image"/>
+                                    </CarouselItem>
+                                })}
+                            </CarouselContent>
+                            {imgSrc.length === 1 ? '' : (
+                                <>
+                                    <CarouselPrevious className="-mx-[15px]" />
+                                    <CarouselNext className="-mx-[15px]" />
+                                </>
+                            )}
+                        </Carousel>
+                    </DialogContent>
+                </Dialog>
+            </div>
 
             <Separator />
 
@@ -93,7 +97,14 @@ export default function ProjectCard({id, imgSrc, name, description, links, techS
                                     rel="noopener noreferrer"
                                     href={link.href}
                                 >
-                                    {link.icon}
+                                    <Tooltip>
+                                        <TooltipTrigger>
+                                            {link.icon}
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            {link.name}
+                                        </TooltipContent>
+                                    </Tooltip>
                                 </a>
                         })}
                     </div>

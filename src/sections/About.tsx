@@ -1,8 +1,13 @@
 import HeaderSection from "@/components/HeaderSection";
+import HeroSection from "./HeroOnSmallScreens";
 
 export default function About() {
-    return <section id="about">
-        <HeaderSection text="Hey There!" icon={<span className="wave">👋</span>}/>
+
+return <section id="about">
+
+        <HeroSection />
+        
+        <HeaderSection className="mt-10 md:mt-0" text="Hey There!" icon={<span className="wave">👋</span>}/>
             
         <div className="mt-5">
             <p className="text-muted-foreground">
@@ -23,9 +28,3 @@ export default function About() {
         </div>
     </section>
 }
-
-// export default function SectionHeader(text: string) {
-//     return <h1 className="mb-0 text-balance font-medium text-5xl tracking-tighter!">
-//           {text}
-//         </h1>
-// }

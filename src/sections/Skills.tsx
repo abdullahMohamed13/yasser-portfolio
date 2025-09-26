@@ -3,7 +3,7 @@ import HeaderSection from "@/components/HeaderSection";
 // shadcn components
 import {
   Tabs,
-  TabsContent,
+  // TabsContent,
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
@@ -18,7 +18,7 @@ import SQLLogo from '/skills/sql.svg'
 import DaxLogo from '/skills/dax.svg'
 
 // ICONS
-import { Badge } from "@/components/ui/badge";
+// import { Badge } from "@/components/ui/badge";
 import { FaGithub } from "react-icons/fa";
 import { MdOutlineIntegrationInstructions, MdWorkOutline, MdLanguage } from "react-icons/md";
 
@@ -122,8 +122,7 @@ export default function Skills() {
                 ))}
             </TabsList>
 
-            {tabs.map(tab => (
-                // self-center md:self-end
+            {/* {tabs.map(tab => (
                 <TabsContent key={tab.value} value={tab.value} className="mt-3 flex gap-2">
                     {tab.skills?.map((skill, index) => {
                         return <Badge key={index} className="flex items-center gap-2 py-2 px-5" variant="outline">
@@ -132,7 +131,7 @@ export default function Skills() {
                             </Badge>
                     })}
                 </TabsContent>
-            ))}
+            ))} */}
         </Tabs>
     </section>
 }

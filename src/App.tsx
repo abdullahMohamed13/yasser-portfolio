@@ -13,12 +13,11 @@ function App() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex flex-col gap-10"
+        className="flex flex-col gap-8 md:gap-10"
       >
         <About />
         <Separator />
         <ProjectSection />
-        {/* <SubProjectSection /> */}
         <Separator />
         <Skills />
       </motion.main>

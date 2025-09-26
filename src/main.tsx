@@ -8,6 +8,7 @@ import Layout from './components/Layout.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProjectDetails from './sections/ProjectDetails.tsx'
 import ErrorPage from './ErrorPage.tsx'
+import { Toaster } from "sonner"
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
         element: <App />
       },
       {
-        path: 'projects/:id',
+        path: 'projects/:name',
         element: <ProjectDetails />
       },
     ]
@@ -31,6 +32,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
       <SidebarProvider>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+          <Toaster />
           <RouterProvider router={router} />
         </ThemeProvider>
       </SidebarProvider>
