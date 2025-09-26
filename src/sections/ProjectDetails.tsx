@@ -58,13 +58,13 @@ export default function ProjectDetails() {
             <div key={blockIndex} className="flex flex-col gap-6 mt-6">
               {block.sections.map((section, sectionIndex) => (
                 <div key={sectionIndex} className="flex flex-col">
-                  {section.title && <h3 className="text-xl flex items-center gap-1"><FaArrowRight /> {section.title}</h3>}
+                  {section.title && <h3 className="text-xl flex items-center gap-2"><FaArrowRight color="var(--color-primary)"/> {section.title}</h3>}
                   {section.text && <p className="text-muted-foreground">{section.text}</p>}
                   {section.img && (
                     <>
                       <img
                         src={section.img}
-                        className="rounded-md my-3"
+                        className="rounded-md my-3 w-full sm:max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain"
                         alt={section.title || "Dashboard Img"}
                       />
                       <Separator />
