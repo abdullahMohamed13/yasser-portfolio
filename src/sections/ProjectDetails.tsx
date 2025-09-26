@@ -13,6 +13,7 @@ import {
 import { KPITable } from "@/components/kpi-table";
 import { Separator } from "@/components/ui/separator";
 import HeaderSection from "@/components/HeaderSection";
+import { FaArrowRight} from 'react-icons/fa'
 
 export default function ProjectDetails() {
   const navigate = useNavigate()
@@ -45,7 +46,7 @@ export default function ProjectDetails() {
 
       <div>
         <HeaderSection text="Description" />
-        <p className="mt-2 text-lg md:text-xl">{project.detailedDescription}</p>
+        <p className="mt-2 text:base md:text-lg">{project.detailedDescription}</p>
       </div>
 
       <Separator />
@@ -53,19 +54,31 @@ export default function ProjectDetails() {
       <div>
         <HeaderSection text="Project Break Down" />
         <div className="flex flex-col gap-5">
-          {project.content?.map((c, index) => {
-            return <div key={index} className="flex flex-col gap-3 mt-3">
-              <h3 className="text-xl">📊{c.title}:</h3>
-              <p className="text-muted-foreground">{c.text}</p>
-              <img src={c.img} className="rounded-md" alt="Dashboard Img" />
+          {project.content?.map((block, blockIndex) => (
+            <div key={blockIndex} className="flex flex-col gap-6 mt-6">
+              {block.sections.map((section, sectionIndex) => (
+                <div key={sectionIndex} className="flex flex-col">
+                  {section.title && <h3 className="text-xl flex items-center gap-1"><FaArrowRight /> {section.title}</h3>}
+                  {section.text && <p className="text-muted-foreground">{section.text}</p>}
+                  {section.img && (
+                    <>
+                      <img
+                        src={section.img}
+                        className="rounded-md my-3"
+                        alt={section.title || "Dashboard Img"}
+                      />
+                      <Separator />
+                    </>
+                  )}
+                </div>
+              ))}
             </div>
-          })}
+          ))}
         </div>
       </div>
 
       {project.KPIs && (
         <>
-          <Separator />
           <div>
             <HeaderSection text="KPIs at a Glance" />
             <img className="rounded-2xl my-3" src={project.KPIs?.img} alt="KPIs illustration" />
@@ -73,8 +86,6 @@ export default function ProjectDetails() {
           </div>
         </>
       )}
-
-      <Separator />
 
       <div>
         <HeaderSection text="Tools & Skills Demonstrated" />

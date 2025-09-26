@@ -88,7 +88,7 @@ export default function ProjectCard({id, imgSrc, name, description, links, techS
                 <Separator orientation="vertical"  />
 
                 <div>
-                    <Badge variant='outline'>Links:</Badge>
+                    <Badge variant='outline'>Quick Links:</Badge>
                     <div className="flex gap-2 justify-center items-center">
                         {links.map((link) => {
                             return <a

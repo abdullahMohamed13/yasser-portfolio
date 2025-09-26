@@ -35,7 +35,6 @@ export function AppSidebar() {
           <TextRevealButton variant="gradient" text="Yasser Allam" />
 
           <div className='flex items-center gap-1'>
-            <span className='text-primary text-2xl'>$</span>
             <TypingText
               text={["Data Analyst", "Data Engineer", "Programmer"]}
               typingSpeed={75}

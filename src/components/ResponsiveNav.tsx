@@ -5,10 +5,13 @@ import { useNavigate, useLocation } from "react-router-dom"
 import { AppSidebar } from "./app-sidebar"
 import { navigationItems, handleNavigation } from '@/utils/navigation'
 import { ModeToggle } from "./mode-toggle"
+import { useState } from "react"
 
 export function ResponsiveNav() {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const [open, setOpen] = useState(false); // Control sheet
 
   return (
     <>
@@ -18,31 +21,39 @@ export function ResponsiveNav() {
       </div>
 
       {/* only for small screens */}
-      <div className="flex md:hidden w-full items-center justify-between p-4 border-b">
-        <span className="font-bold text-lg">Yasser Allam</span>
-        
+      <div className="flex md:hidden w-full items-center justify-between py-4 border-b">
+        <span className="font-bold text-2xl">Yasser Allam</span>
 
         <div className="flex items-center gap-2">
           <ModeToggle />
-          <Sheet>
+          <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left">
-              <nav className="flex flex-col gap-2 mt-4">
-                {navigationItems.map((item) => (
+            <SheetContent side="left" className="px-3" aria-describedby='Nav menu'>
+              <p className="text-xl py-4 border-b">Navigation Menu</p>
+              <nav className="flex flex-col gap-2">
+                {navigationItems.map((item, index) => (
                   <Button
-                    key={item.title}
+                    key={index}
                     variant="ghost"
                     className="justify-start"
-                    onClick={() => handleNavigation(item.url, navigate, location)}
+                    onClick={() => {
+                      handleNavigation(item.url, navigate, location)
+                      setOpen(false);
+                    }}
                   >
-                    {item.title}
+                    {item.icon} {item.title}
                   </Button>
                 ))}
               </nav>
+              <a className="mt-5" target="_blank" href="https://yasser-portfolio-kappa.vercel.app">
+                <Button variant='destructive' size='sm'>
+                  My Previous Experience
+                </Button>
+              </a>
             </SheetContent>
           </Sheet>
         </div>

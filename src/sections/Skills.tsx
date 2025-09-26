@@ -3,7 +3,7 @@ import HeaderSection from "@/components/HeaderSection";
 // shadcn components
 import {
   Tabs,
-  // TabsContent,
+  TabsContent,
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
@@ -18,22 +18,16 @@ import SQLLogo from '/skills/sql.svg'
 import DaxLogo from '/skills/dax.svg'
 
 // ICONS
-// import { Badge } from "@/components/ui/badge";
 import { FaGithub } from "react-icons/fa";
 import { MdOutlineIntegrationInstructions, MdWorkOutline, MdLanguage } from "react-icons/md";
+import { Badge } from "@/components/ui/badge";
 
-const iconSize = 'h-10 w-10'
+const iconSize = 'h-5 w-5 md:h-9 md:w-9'
 const tabs = [
   {
     name: 'Software',
     value: 'software',
     icon: <MdOutlineIntegrationInstructions />,
-    content: (
-      <>
-        Discover <span className='text-foreground font-semibold'>fresh ideas</span>, trending topics, and hidden gems
-        curated just for you. Start exploring and let your curiosity lead the way!
-      </>
-    ),
     skills: [
         {
             name: 'Power BI',
@@ -67,12 +61,6 @@ const tabs = [
     name: 'Expertise',
     value: 'expertise',
     icon: <MdWorkOutline />,
-    content: (
-      <>
-        All your <span className='text-foreground font-semibold'>favorites</span> are saved here. Revisit articles,
-        collections, and moments you love, any time you want a little inspiration.
-      </>
-    ),
     skills: [
         {
             name: 'Arabic',
@@ -88,12 +76,6 @@ const tabs = [
     name: "Languages",
     value: 'languages',
     icon: <MdLanguage />,
-    content: (
-      <>
-        <span className='text-foreground font-semibold'>Surprise!</span> Here&apos;s something unexpected—a fun fact, a
-        quirky tip, or a daily challenge. Come back for a new surprise every day!
-      </>
-    ),
     skills: [
         {
             name: 'Arabic',
@@ -112,7 +94,7 @@ export default function Skills() {
         <HeaderSection text="Skills" />
         <Tabs
         defaultValue='software'
-        className="mt-5 flex w-full">
+        className="mt-5 flex">
             <TabsList className="self-center md:self-start">
                 {tabs.map(tab => (
                     <TabsTrigger key={tab.value} value={tab.value}>
@@ -122,36 +104,25 @@ export default function Skills() {
                 ))}
             </TabsList>
 
-            {/* {tabs.map(tab => (
-                <TabsContent key={tab.value} value={tab.value} className="mt-3 flex gap-2">
-                    {tab.skills?.map((skill, index) => {
-                        return <Badge key={index} className="flex items-center gap-2 py-2 px-5" variant="outline">
-                                {skill.icon}
-                                <p>{skill.name}</p>
-                            </Badge>
-                    })}
-                </TabsContent>
-            ))} */}
+          {tabs.map(tab => (
+            <TabsContent
+              key={tab.value}
+              value={tab.value}
+              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mt-3"
+            >
+              {tab.skills?.map((skill, index) => (
+                <Badge
+                  key={index}
+                  className="flex justify-start gap-2 py-3 px-2 md:px-4 w-full h-full"
+                  variant="secondary"
+                >
+                  {skill.icon}
+                  <p className="text-xs md:text-sm">{skill.name}</p>
+                </Badge>
+              ))}
+            </TabsContent>
+          ))}
+
         </Tabs>
     </section>
 }
-
-// {tabs.map((tab, index) => (
-//     // self-center md:self-end
-//   <TabsContent
-//     key={tab.value}
-//     value={tab.value}
-//     className="mt-3 flex flex-wrap gap-4"
-//   >
-//     {tab.skills?.map((skill) => (
-//       <Badge
-//         key={index}
-//         className="flex items-center justify-center gap-2 py-3 px-6 w-[calc(25%-0.75rem)]"
-//         variant="outline"
-//       >
-//         {skill.icon}
-//         <span>{skill.name}</span>
-//       </Badge>
-//     ))}
-//   </TabsContent>
-// ))}

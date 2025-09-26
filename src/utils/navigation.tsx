@@ -30,5 +30,6 @@ export const handleNavigation = (url: string, navigate: NavigateFunction, locati
         }
     } else {
         navigate(`/${url}`);
+        return null
     }
 };

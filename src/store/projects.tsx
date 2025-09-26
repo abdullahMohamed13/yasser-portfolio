@@ -23,11 +23,13 @@ export interface ProjectProps {
     // FOR ProjectDetails page
     detailedDescription?: string
     conclusion?: string
-    content?: {
-        title: string,
-        img: string,
-        text: string
-    }[]
+    content?: Array<{
+        sections: Array<{
+            title?: string;
+            text?: string;
+            img?: string;
+        }>;
+    }>;
     skillsDemonstrated?: {
         key: string
         value: string
@@ -125,6 +127,18 @@ export const projects: ProjectProps[] = [
             'Detect unprofitable products and reevaluate discount strategies.',
             'Focus investments on high-growth markets.',
             'Improve profitability by aligning pricing and promotions with data insights.'
+        ],
+        content: [
+            {
+                sections: [
+                    {title: 'Sales Trends', text: 'A year-by-year breakdown (2014-2017) shows consistent growth in sales with some seasonal fluctuations.',},
+                    {title: 'Category & Product Insights', text: 'Office Supplies lead sales (60.3%); Phones and Chairs top products.',},
+                    {title: 'Customer Segmentation', img: '/projects/2-1.png', text: 'Consumers dominate (50.56%) with strong Corporate and Home Office sales.',},
+                    {title: 'Discount Analysis', img: '/projects/2-2.png', text: "High discounts reduce profit; Tables and Bookcases drive losses.",},
+                    {title: 'Regional Analysis', text: "West & East lead sales; South shows weaker profit margins.",},
+                    {title: 'City-level Breakdown', img: '/projects/2-3.png', text: "New York, Los Angeles, and Seattle drive top sales and profits.",},
+                ]
+            }
         ]
     },
     
@@ -192,14 +206,10 @@ export const projects: ProjectProps[] = [
         ],
         content: [
             {
-                title: 'High-Level market view',
-                img: '/projects/1-1.jpeg',
-                text: "This is your mission control for the data job market. It showcases key KPIS like total job count, median salaries, and top job titles to give you a quick understanding of what's happening in the job market at a glance.",
-            },
-            {
-                title: 'Drill through job title',
-                img: '/projects/1-2.jpeg',
-                text: "This is the deep-dive page. From the main dashboard, you can drill through to this view to get specific details for a single job title, including salary ranges, work-from-home stats, top hiring platforms, and a global map of job locations.",
+                sections: [
+                    {title: 'High-Level market view', img: '/projects/1-1.jpeg', text: "This is your mission control for the data job market. It showcases key KPIS like total job count, median salaries, and top job titles to give you a quick understanding of what's happening in the job market at a glance."},
+                    {title: 'Drill through job title', img: '/projects/1-2.jpeg', text: "This is the deep-dive page. From the main dashboard, you can drill through to this view to get specific details for a single job title, including salary ranges, work-from-home stats, top hiring platforms, and a global map of job locations."},
+                ]
             },
         ]
     },
