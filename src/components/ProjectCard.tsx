@@ -18,7 +18,7 @@ export default function ProjectCard({id, imgSrc, name, description, links, techS
     const navigate = useNavigate()
     return <Card key={id} className="relative hover:scale-102 transition-all hover:shadow-xl">
         <CardHeader className="flex flex-col">
-                <CardTitle className="text-lg leading-5.5">{name}</CardTitle>
+                <CardTitle className="text-lg leading-5.5 w-[90%]">{name}</CardTitle>
                 <CardAction
                     onClick={() => navigate(`/projects/${name}`)}
                     className="group absolute top-2 right-2 border border-border shadow-2xl p-2 rounded-3xl cursor-pointer"
