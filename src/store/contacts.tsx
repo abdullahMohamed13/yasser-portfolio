@@ -27,7 +27,7 @@ export const contacts = [
 
 export const handleWhatsappClick = () => {
     navigator.clipboard.writeText(whatsappNumber);
-    toast("Copied", {
+    toast("Copied successfully!", {
       description: "WhatsApp number copied to clipboard.",
     })
 };

@@ -3,10 +3,16 @@ import Footer from './Footer';
 import ScrollToTopComponent from './ScrollToTopComponent';
 import { Separator } from './ui/separator';
 import { ResponsiveNav } from './ResponsiveNav';
+import { motion } from "framer-motion"
 
 export default function Layout() {
-  return (
-    <main className="w-full max-w-screen-xl mx-auto px-4 flex flex-col md:flex-row gap-2 mb-10">
+  return <motion.main
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="w-full px-4 flex flex-col md:flex-row gap-2 mb-10"
+    >
       <ResponsiveNav />
       <div className="mt-5 md:mt-10 flex-1">
         <Outlet />
@@ -14,6 +20,5 @@ export default function Layout() {
         <Footer />
       </div>
       <ScrollToTopComponent />
-    </main>
-  );
+    </motion.main>
 }

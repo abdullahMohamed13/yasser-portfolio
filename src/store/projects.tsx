@@ -2,7 +2,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import PowerBILogo from '/skills/PowerBI.svg'
 import ExcelLogo from '/skills/Excel.png'
 import MicrosoftPQLogo from '/skills/microsoft-power-query.png'
-import DaxLogo from '/skills/dax.svg'
+import DaxLogo from '/skills/dax.png'
 
 export interface ProjectProps {
     // FOR ProjectCard in home page

@@ -38,7 +38,7 @@ export function AppSidebar() {
             <TypingText
               text={["Data Analyst", "Programmer"]}
               typingSpeed={75}
-              pauseDuration={1500}
+              pauseDuration={4000}
               showCursor={true}
               cursorCharacter="|"
               className="text-primary text-2xl font-medium"

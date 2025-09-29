@@ -13,7 +13,7 @@ import {
 import { KPITable } from "@/components/kpi-table";
 import { Separator } from "@/components/ui/separator";
 import HeaderSection from "@/components/HeaderSection";
-import { FaArrowRight} from 'react-icons/fa'
+import { FaChartLine } from 'react-icons/fa'
 
 export default function ProjectDetails() {
   const navigate = useNavigate()
@@ -58,7 +58,11 @@ export default function ProjectDetails() {
             <div key={blockIndex} className="flex flex-col gap-6 mt-6">
               {block.sections.map((section, sectionIndex) => (
                 <div key={sectionIndex} className="flex flex-col">
-                  {section.title && <h3 className="text-xl flex items-center gap-2"><FaArrowRight color="var(--color-primary)"/> {section.title}</h3>}
+                  {section.title &&
+                    <h3 className="text-xl flex items-center gap-2">
+                      <FaChartLine color="var(--color-primary)"/> {section.title}
+                    </h3>
+                  }
                   {section.text && <p className="text-muted-foreground">{section.text}</p>}
                   {section.img && (
                     <>

@@ -1,6 +1,5 @@
-// Custom components
+// Components
 import HeaderSection from "@/components/HeaderSection";
-// shadcn components
 import {
   Tabs,
   TabsContent,
@@ -15,11 +14,11 @@ import PowerBILogo from '/skills/PowerBI.svg'
 import ExcelLogo from '/skills/Excel.png'
 import MicrosoftPQLogo from '/skills/microsoft-power-query.png'
 import SQLLogo from '/skills/sql.svg'
-import DaxLogo from '/skills/dax.svg'
+import DaxLogo from '/skills/dax.png'
 
 // ICONS
 import { FaGithub } from "react-icons/fa";
-import { MdOutlineIntegrationInstructions, MdWorkOutline, MdLanguage } from "react-icons/md";
+import { MdOutlineIntegrationInstructions, MdLanguage } from "react-icons/md";
 import { Badge } from "@/components/ui/badge";
 
 const iconSize = 'h-5 w-5 md:h-9 md:w-9'
@@ -55,21 +54,6 @@ const tabs = [
           name: 'DAX',
             icon: <img src={DaxLogo} className={iconSize} alt="DAX Logo" />
         },
-    ]
-  },
-  {
-    name: 'Expertise',
-    value: 'expertise',
-    icon: <MdWorkOutline />,
-    skills: [
-        {
-            name: 'Arabic',
-            icon: <img src={PowerBILogo} className={iconSize} alt="Power BI Logo" />
-        },
-        {
-            name: 'English',
-            icon: <img src={PowerBILogo} className={iconSize} alt="Power BI Logo" />
-        }
     ]
   },
   {

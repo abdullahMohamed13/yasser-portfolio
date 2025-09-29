@@ -29,7 +29,7 @@ export const handleNavigation = (url: string, navigate: NavigateFunction, locati
           element.scrollIntoView({ behavior: "smooth" });
         }
     } else {
-        navigate(`/${url}`);
+        navigate('/' + url);
         return null
     }
 };
