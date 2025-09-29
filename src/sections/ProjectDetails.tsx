@@ -97,12 +97,11 @@ export default function ProjectDetails() {
           ))}
         </div>
       </div>
-
-      <Separator />
       
       {/* KPIs */}
       {project.KPIs && (
         <>
+          <Separator />
           <div>
             <HeaderSection text="KPIs at a Glance" />
             <img className="rounded-2xl my-3" src={project.KPIs?.img} alt="KPIs illustration" />
@@ -110,7 +109,8 @@ export default function ProjectDetails() {
           </div>
         </>
       )}
-
+      
+      <Separator />
       {/* Skills */}
       <div>
         <HeaderSection text="Tools & Skills Demonstrated" />
