@@ -1,8 +1,8 @@
 import HeaderSection from "@/components/HeaderSection";
 import { projects } from "@/store/projects";
-import { Badge } from "@/components/ui/badge";
 import ProjectCard from "@/components/ProjectCard";
 import TypingText from "@/components/ui/shadcn-io/typing-text";
+import { Badge } from "@/components/ui/badge";
 
 export default function ProjectsSection() {
     return <section id="projects">
@@ -10,7 +10,9 @@ export default function ProjectsSection() {
         <div className="flex flex-col gap-3 md:gap-0 md:flex-row justify-between items-center">
             <HeaderSection text='My Projects' />
             
-            <Badge variant='outline' className="hover:shadow-xl hover:bg-accent transition text-md px-4 py-1">
+            <Badge variant='outline'
+                className="hover:shadow-xl hover:bg-accent transition text-lg px-4 py-1"
+            >
                 Stay tuned for more
                 <TypingText
                     deletingSpeed={500}
@@ -19,7 +21,7 @@ export default function ProjectsSection() {
                     typingSpeed={1000}
                     pauseDuration={500}
                     showCursor={false}
-                    className="text-foreground text-2xl font-medium"
+                    className="text-foreground text-2xl font-medium leading-[1.2] min-h-[2rem]"
                     variableSpeed={{ min: 450, max: 500 }}
                     startOnVisible={true}
                 />

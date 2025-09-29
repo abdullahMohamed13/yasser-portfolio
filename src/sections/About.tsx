@@ -9,17 +9,18 @@ return <section id="about">
         
         <HeaderSection className="mt-10 md:mt-0" text="Hey There!" icon={<span className="wave">👋</span>}/>
             
-        <div className="mt-5 flex flex-col text-center md:text-left gap-3">
+        <div className="mt-5 flex flex-col text-lg text-center md:text-left gap-3">
             <p className="text-muted-foreground">
-                Hi, I'm Yasser Allam, a <strong> Data Analyst </strong> with a Bachelor's degree in Systems and Information.
+                Hi, I'm <span className="text-primary font-semibold">Yasser Allam</span>,
+                a <strong className="text-primary"> Data Analyst </strong>
+                holding a Bachelor's degree in Systems and Information Sciences.
                 I enjoy working with tools like
                 <strong> Power BI</strong>, 
                 <strong> SQL</strong>, 
                 <strong> Excel</strong>, 
                 <strong> Power Query</strong>, 
-                <strong> DAX</strong>,
                 and
-                <strong> GitHub </strong>
+                <strong> DAX </strong>
                 to turn raw data
                 into meaningful insights.
 

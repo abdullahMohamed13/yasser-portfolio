@@ -13,7 +13,10 @@ import {
 import { KPITable } from "@/components/kpi-table";
 import { Separator } from "@/components/ui/separator";
 import HeaderSection from "@/components/HeaderSection";
-import { FaChartLine } from 'react-icons/fa'
+import { MdOutlineInsights } from 'react-icons/md'
+// import { MdOutlineDashboard } from 'react-icons/md'
+// import { HiOutlineLightBulb } from 'react-icons/hi'
+// import { HiOutlineDocumentText } from 'react-icons/hi'
 
 export default function ProjectDetails() {
   const navigate = useNavigate()
@@ -53,26 +56,40 @@ export default function ProjectDetails() {
 
       <div>
         <HeaderSection text="Project Break Down" />
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-8">
           {project.content?.map((block, blockIndex) => (
-            <div key={blockIndex} className="flex flex-col gap-6 mt-6">
+            <div key={blockIndex} className="flex flex-col gap-10 mt-6">
               {block.sections.map((section, sectionIndex) => (
-                <div key={sectionIndex} className="flex flex-col">
-                  {section.title &&
-                    <h3 className="text-xl flex items-center gap-2">
-                      <FaChartLine color="var(--color-primary)"/> {section.title}
-                    </h3>
-                  }
-                  {section.text && <p className="text-muted-foreground">{section.text}</p>}
+                <div
+                  key={sectionIndex}
+                  className={`flex flex-col md:flex-row gap-6 rounded-2xl border p-6 shadow-sm bg-card transition hover:shadow-md ${
+                    sectionIndex % 2 !== 0 ? "md:flex-row-reverse" : ""
+                  }`}
+                >
+                  {/* Text Content */}
+                  <div className="flex-1 flex flex-col justify-center">
+                    {section.title && (
+                      <h3 className="text-xl font-semibold flex items-center gap-2 mb-3">
+                        <MdOutlineInsights className="text-primary w-5 h-5" />
+                        {section.title}
+                      </h3>
+                    )}
+                    {section.text && (
+                      <p className="text-muted-foreground leading-relaxed">
+                        {section.text}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Image */}
                   {section.img && (
-                    <>
+                    <div className="flex-1 flex justify-center items-center">
                       <img
                         src={section.img}
-                        className="rounded-md my-3 w-full sm:max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain"
+                        className="rounded-xl w-full sm:max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain bg-muted p-2"
                         alt={section.title || "Dashboard Img"}
                       />
-                      <Separator />
-                    </>
+                    </div>
                   )}
                 </div>
               ))}
@@ -81,6 +98,7 @@ export default function ProjectDetails() {
         </div>
       </div>
 
+      {/* KPIs */}
       {project.KPIs && (
         <>
           <div>
@@ -91,24 +109,26 @@ export default function ProjectDetails() {
         </>
       )}
 
+      {/* Skills */}
       <div>
         <HeaderSection text="Tools & Skills Demonstrated" />
-        <ul className="ml-3 md:ml-0 list-disc flex flex-col gap-2 mt-4">
-          {project.skillsDemonstrated?.map((skill, index) => {
-            return <li key={index}>
-              <span className="font-bold bg-muted px-2 py-1 rounded-md">{skill.key}:</span>
-              <> </>{skill.value}
+        <ul className="ml-4 list-disc flex flex-col gap-2 mt-4">
+          {project.skillsDemonstrated?.map((skill, index) => (
+            <li key={index} className="text-muted-foreground">
+              <span className="font-bold bg-muted px-2 py-1 rounded-md text-foreground">{skill.key}:</span>{" "}
+              {skill.value}
             </li>
-          })}
+          ))}
         </ul>
       </div>
 
+      {/* Business Value */}
       {project.businessValue && (
         <>
           <Separator />
           <div>
             <HeaderSection text="Business Value" />
-            <ul className="ml-3 md:ml-0 list-disc">
+            <ul className="ml-4 list-disc">
               {project.businessValue.map((bus, index) => {
                 return <li key={index} className="mt-2">
                   {bus}
@@ -119,6 +139,7 @@ export default function ProjectDetails() {
         </>
       )}
 
+      {/* Conclusion (if exist) */}
       {project.conclusion && (
         <>
           <Separator />
@@ -129,15 +150,25 @@ export default function ProjectDetails() {
         </>
       )}
 
-      <div className="flex justify-center gap-2 flex-col items-center">
-        {project.links.map((link, index) => {
-          return <Button key={index} className="w-[55%] md:w-[40%]">
-            <a href={link.href} className="text-white flex items-center gap-1 justify-center">
+      {/* Links */}
+      <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3 mt-6">
+        {project.links.map((link, index) => (
+          <Button
+            key={index}
+            className="w-full sm:w-2/3 md:w-1/2 lg:w-1/3"
+            asChild
+          >
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 justify-center"
+            >
               {link.icon}
               {link.name}
             </a>
           </Button>
-        })}
+        ))}
       </div>
 
     </main>

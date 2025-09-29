@@ -4,7 +4,7 @@ import { SiWhatsapp } from "react-icons/si";
 
 export default function HeroSection() {
     return <section className="md:hidden">
-        <div className="gap-2 flex justify-center items-center flex-col">
+        <div className="gap-4 flex justify-center items-center flex-col">
             <img src="/me.png" alt="Picture of me" className="rounded-full " />
             <TypingText
               text={["Data Analyst", "Data Engineer", "Programmer"]}

@@ -51,18 +51,18 @@ export const projects: ProjectProps[] = [
         id: 0,
         name: 'Comprehensive Sales Performance Dashboard',
         imgSrc: ['/projects/2.jpeg'],
-        description: 'Interactive dashboard that transforms complex sales data into actionable business insights.',
+        description: 'An advanced interactive dashboard that transforms complex sales data into clear, actionable insights for smarter business decisions.',
         detailedDescription: "This interactive Sales Dashboard was built in Power BI to analyze and monitor key business performance metrics. It provides a clear view of sales performance, profitability, discount impact, and customer trends, allowing stakeholders to make data-driven decision",
         links: [
             {
                 name: 'Github Repo',
                 href: 'https://github.com/YasserAllam/Sales-Dashboard',
-                icon: <FaGithub className='cursor-pointer hover:text-foreground/50' size={23} />
+                icon: <FaGithub className='cursor-pointer hover:text-foreground/50' size={50} />
             },
             {
                 name: 'Linkedin Post',
                 href: 'https://www.linkedin.com/posts/yasser-allam-4b02ab331_powerbi-dataanalytics-businessintelligence-activity-7368121539352813569-GtPJ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEeKCYUB2f05TmAQBvRvCLK8mgQqJSaN2fg',
-                icon: <FaLinkedin className='cursor-pointer hover:text-[#0a66c2]' size={23} />
+                icon: <FaLinkedin className='cursor-pointer hover:text-[#0a66c2]' size={50} />
         }],
         techStack: [
             {
