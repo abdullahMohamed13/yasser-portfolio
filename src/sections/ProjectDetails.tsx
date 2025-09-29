@@ -116,9 +116,9 @@ export default function ProjectDetails() {
         <HeaderSection text="Tools & Skills Demonstrated" />
         <ul className="ml-4 list-disc flex flex-col gap-2 mt-4">
           {project.skillsDemonstrated?.map((skill, index) => (
-            <li key={index} className="text-muted-foreground">
+            <li key={index}>
               <span className="font-bold bg-muted px-2 py-1 rounded-md text-foreground">{skill.key}:</span>{" "}
-              {skill.value}
+              <span className="text-muted-foreground">{skill.value}</span>
             </li>
           ))}
         </ul>
