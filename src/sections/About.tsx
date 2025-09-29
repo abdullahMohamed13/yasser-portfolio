@@ -1,5 +1,6 @@
 import HeaderSection from "@/components/HeaderSection";
 import HeroSection from "./HeroOnSmallScreens";
+import { Badge } from "@/components/ui/badge";
 
 export default function About() {
 
@@ -10,22 +11,22 @@ return <section id="about">
         <HeaderSection className="mt-10 md:mt-0" text="Hey There!" icon={<span className="wave">👋</span>}/>
             
         <div className="mt-5 flex flex-col text-lg text-center md:text-left gap-3">
-            <p className="text-muted-foreground">
+            <p>
                 Hi, I'm <span className="text-primary font-semibold">Yasser Allam</span>,
                 a <strong className="text-primary"> Data Analyst </strong>
                 holding a Bachelor's degree in Systems and Information Sciences.
-                I enjoy working with tools like
-                <strong> Power BI</strong>, 
-                <strong> SQL</strong>, 
-                <strong> Excel</strong>, 
-                <strong> Power Query</strong>, 
-                and
-                <strong> DAX </strong>
+                I enjoy working with tools like {''}
+                <Badge variant='secondary' className="text-base"><strong>Power BI</strong></Badge>, 
+                {' '}<Badge variant='secondary' className="text-base"><strong>SQL</strong></Badge>, 
+                {' '}<Badge variant='secondary' className="text-base"><strong>Excel</strong></Badge>, 
+                {' '}<Badge variant='secondary' className="text-base"><strong>Power Query</strong></Badge>, 
+                &
+                {' '}<Badge variant='secondary' className="text-base"><strong> DAX</strong></Badge> {''}
                 to turn raw data
                 into meaningful insights.
 
             </p>
-            <p className="text-muted-foreground">
+            <p>
                 I've already built several projects
                 (<a className="underline text-primary" href="#projects">check them out below 👇</a>)
                 that showcase my ability to analyze,
