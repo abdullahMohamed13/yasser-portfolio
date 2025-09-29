@@ -58,7 +58,7 @@ export default function ProjectDetails() {
         <HeaderSection text="Project Break Down" />
         <div className="flex flex-col gap-8">
           {project.content?.map((block, blockIndex) => (
-            <div key={blockIndex} className="flex flex-col gap-10 mt-6">
+            <div key={blockIndex} className="flex flex-col gap-2 md:gap-4 mt-4">
               {block.sections.map((section, sectionIndex) => (
                 <div
                   key={sectionIndex}
@@ -98,6 +98,8 @@ export default function ProjectDetails() {
         </div>
       </div>
 
+      <Separator />
+      
       {/* KPIs */}
       {project.KPIs && (
         <>
