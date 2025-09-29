@@ -97,7 +97,7 @@ export default function ProjectCard({id, imgSrc, name, description, links, techS
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 justify-center"
+                            className="flex items-center text-white gap-2 justify-center"
                         >
                             {link.icon}
                             {link.name}
