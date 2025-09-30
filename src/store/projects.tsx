@@ -213,4 +213,148 @@ export const projects: ProjectProps[] = [
             },
         ]
     },
+    
+    {
+        id: 1,
+        name: 'Data Jobs Dashboard',
+        imgSrc: ['/projects/1-1.jpeg', '/projects/1-2.jpeg'],
+        description: 'A comprehensive Data Jobs Dashboard for job seekers, career transitioners, and market researchers',
+        detailedDescription: 'This dashboard was created for Job Seekers, Job Transtioners, and Job Sweepers to solve a common problem: information about the data job market is scattered and hard to grasp. Using a real-world dataset of 2024 data science job posting (Including titles, salaries, and locations), this project provides a single, easy-to-use interface to explore market trends and compernsation. I made this dashboard as part of a learning tutorial was going through',
+        conclusion: 'This dashboard showcases how Power BI can transform raw job posting data into a powerful tool for career analysis. It allows users to slice, filter, and drill through data to make informed decisions about their career path.',
+        links: [
+            {
+                name: 'Github Repo',
+                href: 'https://github.com/YasserAllam/Power-bi-data-jobs-dashboard',
+                icon: <FaGithub className='cursor-pointer hover:text-foreground/50' size={23} />
+            },
+            {
+                name: 'Linkedin Post',
+                href: 'https://www.linkedin.com/posts/yasser-allam-4b02ab331_powerbi-datavisualization-businessintelligence-activity-7365237367600828417-J9Qg?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEeKCYUB2f05TmAQBvRvCLK8mgQqJSaN2fg',
+                icon: <FaLinkedin className='cursor-pointer hover:text-[#0a66c2]' size={23} />
+        }],
+        techStack: [
+            {
+                name: 'PQ',
+                icon: <img src={MicrosoftPQLogo} alt="Microsoft Power Query Logo" className={iconSize} />,
+            },
+            {
+                name: 'Power BI',
+                icon: <img src={PowerBILogo} alt="Power BI Logo" className={iconSize} />,
+            },
+            {
+                name: 'DAX',
+                icon:<img src={DaxLogo} alt="DAX Logo" className={iconSize} />,
+            },
+        ],
+        skillsDemonstrated: [
+            {
+                key: '⚙️ Data Transformation (ETL) with Power Query',
+                value: 'Cleaned, shaped, and prepared the raw data for analysis by handling blanks, changing data types, and creating new columns.',
+            },
+            {
+                key: '🔗 Basic Data Modeling',
+                value: '(Table Relationships)',
+            },
+            {
+                key: '🧮 Implicit Measures And Explicit Measures',
+                value: "Formulated measures to derive key insights and KPIS like Median Yearly Salary and Job Count'.",
+            },
+            {
+                key: '📊 Core Charts',
+                value: 'Utilized Column, Bar, Line, and Area Chart to compare job counts and track trends over time.',
+            },
+            {
+                key: '🗺️ Geospatial Analysis',
+                value: 'Leveraged Map Charts to visualize the global distributkon of jobs.',
+            },
+            {
+                key: '🔢 KPI Indicators & Tables',
+                value: 'Used Cards to display key metrics and Tables to provide granular, sortable data.',
+            },
+            {
+                key: '🎨 Dashboard Design',
+                value: 'Designed an intuitive and visually appealing layout, exploring both common and uncommon chart types to best tell the data story.',
+            },
+        ],
+        content: [
+            {
+                sections: [
+                    {title: 'High-Level market view', img: '/projects/1-1.jpeg', text: "This is your mission control for the data job market. It showcases key KPIS like total job count, median salaries, and top job titles to give you a quick understanding of what's happening in the job market at a glance."},
+                    {title: 'Drill through job title', img: '/projects/1-2.jpeg', text: "This is the deep-dive page. From the main dashboard, you can drill through to this view to get specific details for a single job title, including salary ranges, work-from-home stats, top hiring platforms, and a global map of job locations."},
+                ]
+            },
+        ]
+    },
+    
+    {
+        id: 1,
+        name: 'Data Jobs Dashboard',
+        imgSrc: ['/projects/1-1.jpeg', '/projects/1-2.jpeg'],
+        description: 'A comprehensive Data Jobs Dashboard for job seekers, career transitioners, and market researchers',
+        detailedDescription: 'This dashboard was created for Job Seekers, Job Transtioners, and Job Sweepers to solve a common problem: information about the data job market is scattered and hard to grasp. Using a real-world dataset of 2024 data science job posting (Including titles, salaries, and locations), this project provides a single, easy-to-use interface to explore market trends and compernsation. I made this dashboard as part of a learning tutorial was going through',
+        conclusion: 'This dashboard showcases how Power BI can transform raw job posting data into a powerful tool for career analysis. It allows users to slice, filter, and drill through data to make informed decisions about their career path.',
+        links: [
+            {
+                name: 'Github Repo',
+                href: 'https://github.com/YasserAllam/Power-bi-data-jobs-dashboard',
+                icon: <FaGithub className='cursor-pointer hover:text-foreground/50' size={23} />
+            },
+            {
+                name: 'Linkedin Post',
+                href: 'https://www.linkedin.com/posts/yasser-allam-4b02ab331_powerbi-datavisualization-businessintelligence-activity-7365237367600828417-J9Qg?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEeKCYUB2f05TmAQBvRvCLK8mgQqJSaN2fg',
+                icon: <FaLinkedin className='cursor-pointer hover:text-[#0a66c2]' size={23} />
+        }],
+        techStack: [
+            {
+                name: 'PQ',
+                icon: <img src={MicrosoftPQLogo} alt="Microsoft Power Query Logo" className={iconSize} />,
+            },
+            {
+                name: 'Power BI',
+                icon: <img src={PowerBILogo} alt="Power BI Logo" className={iconSize} />,
+            },
+            {
+                name: 'DAX',
+                icon:<img src={DaxLogo} alt="DAX Logo" className={iconSize} />,
+            },
+        ],
+        skillsDemonstrated: [
+            {
+                key: '⚙️ Data Transformation (ETL) with Power Query',
+                value: 'Cleaned, shaped, and prepared the raw data for analysis by handling blanks, changing data types, and creating new columns.',
+            },
+            {
+                key: '🔗 Basic Data Modeling',
+                value: '(Table Relationships)',
+            },
+            {
+                key: '🧮 Implicit Measures And Explicit Measures',
+                value: "Formulated measures to derive key insights and KPIS like Median Yearly Salary and Job Count'.",
+            },
+            {
+                key: '📊 Core Charts',
+                value: 'Utilized Column, Bar, Line, and Area Chart to compare job counts and track trends over time.',
+            },
+            {
+                key: '🗺️ Geospatial Analysis',
+                value: 'Leveraged Map Charts to visualize the global distributkon of jobs.',
+            },
+            {
+                key: '🔢 KPI Indicators & Tables',
+                value: 'Used Cards to display key metrics and Tables to provide granular, sortable data.',
+            },
+            {
+                key: '🎨 Dashboard Design',
+                value: 'Designed an intuitive and visually appealing layout, exploring both common and uncommon chart types to best tell the data story.',
+            },
+        ],
+        content: [
+            {
+                sections: [
+                    {title: 'High-Level market view', img: '/projects/1-1.jpeg', text: "This is your mission control for the data job market. It showcases key KPIS like total job count, median salaries, and top job titles to give you a quick understanding of what's happening in the job market at a glance."},
+                    {title: 'Drill through job title', img: '/projects/1-2.jpeg', text: "This is the deep-dive page. From the main dashboard, you can drill through to this view to get specific details for a single job title, including salary ranges, work-from-home stats, top hiring platforms, and a global map of job locations."},
+                ]
+            },
+        ]
+    },
 ]

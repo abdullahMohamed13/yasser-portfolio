@@ -88,6 +88,7 @@ export default function ProjectDetails() {
                         src={section.img}
                         className="rounded-xl w-full sm:max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain bg-muted p-2"
                         alt={section.title || "Dashboard Img"}
+                        aria-label="Dashboard Img"
                       />
                     </div>
                   )}
