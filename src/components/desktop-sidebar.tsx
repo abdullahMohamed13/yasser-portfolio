@@ -21,6 +21,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { navigationItems, handleNavigation } from '@/utils/navigation'
 import { contacts, handleWhatsappClick } from "@/store/contacts";
 import { projects } from "@/store/projects"
+import { FaLink } from "react-icons/fa";
 
 export function AppSidebar() {
   const navigate = useNavigate();
@@ -88,9 +89,9 @@ export function AppSidebar() {
                               return <Button
                                key={index}
                                 variant='link'
-                                className="ml-2 w-full text-muted-foreground hover:text-foreground cursor-pointer justify-start">
-                                  <Link to={`/projects/${proj.name}`}>
-                                    {proj.name}
+                                className="ml-1 w-full text-muted-foreground hover:text-foreground cursor-pointer justify-start">
+                                  <Link className="flex items-center gap-1" to={`/projects/${proj.name}`}>
+                                    <FaLink />{proj.name}
                                   </Link>
                               </Button>
                             })}

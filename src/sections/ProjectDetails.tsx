@@ -56,6 +56,18 @@ export default function ProjectDetails() {
         <HeaderSection text="Description" />
         <p className="mt-2 text:base md:text-lg">{project.detailedDescription}</p>
       </div>
+      
+      {/* KPIs */}
+      {project.KPIs && (
+        <>
+          <Separator />
+          <div>
+            <HeaderSection text="KPIs at a Glance" />
+            <KPITable className="my-2 md:my-3" items={project.KPIs?.items ?? []}/>
+            <img className="rounded-2xl" src={project.KPIs?.img} alt="KPIs illustration" />
+          </div>
+        </>
+      )}
 
       <Separator />
 
@@ -67,41 +79,45 @@ export default function ProjectDetails() {
               {block.sections.map((section, sectionIndex) => (
                 <div
                   key={sectionIndex}
-                  className={`flex flex-col md:flex-row gap-6 rounded-2xl border p-6 shadow-sm bg-card transition hover:shadow-md ${
+                  className={`flex flex-col gap-6 rounded-2xl border p-6 shadow-sm bg-card transition hover:shadow-md ${
                     sectionIndex % 2 !== 0 ? "md:flex-row-reverse" : ""
                   }`}
                 >
                   {/* Text Content */}
-                  <div className="flex-1 flex flex-col justify-center">
-                    {section.title && (
-                      <h3 className="text-xl font-semibold flex items-center gap-2 mb-3">
+                  {section.details.map((detail, index) => {
+                    return <div key={index} className="flex-1 gap-2 flex flex-col justify-center">
+                      <h3 className="text-xl text-primary font-semibold flex items-center gap-2 mb-3">
                         <MdOutlineInsights className="text-primary w-5 h-5" />
-                        {section.title}
+                        {detail.title}
                       </h3>
-                    )}
-                    {section.text && (
                       <p className="text-muted-foreground leading-relaxed">
-                        {section.text}
+                        {detail.text}
                       </p>
-                    )}
-                  </div>
-
+                      {detail.decision && (
+                        <p className="text-muted-foreground leading-relaxed">
+                          <span className="text-foreground">Decision: </span>{detail.decision}
+                        </p>
+                      )}
+                    </div>
+                  })}
+                  
                   {/* Image */}
                   {section.img && (
-                    <div className="flex-1 flex justify-center items-center">
+                    // flex-1
+                    <div className="flex justify-center items-center">
                       <Dialog>
                         <DialogTrigger>
                           <img
                             src={section.img}
                             className="rounded-xl cursor-pointer w-full sm:max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain bg-muted p-2"
-                            alt={section.title || "Dashboard Img"}
+                            alt="Dashboard Img"
                             aria-label="Dashboard Img"
                           />
                         </DialogTrigger>
                         <DialogContent>
                           <img
                             src={section.img}
-                            alt={section.title || "Dashboard Img"}
+                            alt="Dashboard Img"
                             aria-label="Dashboard Img"
                           />
                         </DialogContent>
@@ -114,18 +130,6 @@ export default function ProjectDetails() {
           ))}
         </div>
       </div>
-      
-      {/* KPIs */}
-      {project.KPIs && (
-        <>
-          <Separator />
-          <div>
-            <HeaderSection text="KPIs at a Glance" />
-            <img className="rounded-2xl my-3" src={project.KPIs?.img} alt="KPIs illustration" />
-            <KPITable items={project.KPIs?.items ?? []}/>
-          </div>
-        </>
-      )}
       
       <Separator />
       {/* Skills */}

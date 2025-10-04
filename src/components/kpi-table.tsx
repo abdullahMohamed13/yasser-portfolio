@@ -28,9 +28,10 @@ export type KPIItem = {
 
 interface KPITableProps {
   items: KPIItem[]
+  className?: string
 }
 
-export function KPITable({ items}: KPITableProps) {
+export function KPITable({ items, className}: KPITableProps) {
   const [sorting, setSorting] = React.useState<SortingState>([])
 
   // columns config for KPI table
@@ -75,7 +76,7 @@ export function KPITable({ items}: KPITableProps) {
   })
 
   return (
-    <div className="w-full max-w-2xl rounded-md border">
+    <div className={`w-full max-w-2xl rounded-md border ${className}`}>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

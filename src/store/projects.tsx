@@ -23,13 +23,16 @@ export interface ProjectProps {
     // FOR ProjectDetails page
     detailedDescription?: string
     conclusion?: string
-    content?: Array<{
-        sections: Array<{
-            title?: string;
-            text?: string;
-            img?: string;
-        }>;
-    }>;
+    content?: {
+        sections:{
+            img?: string
+            details: {
+                title?: string
+                text?: string
+                decision?: string
+            }[]
+        }[]
+    }[]
     skillsDemonstrated?: {
         key: string
         value: string
@@ -121,9 +124,64 @@ export const projects: ProjectProps[] = [
         content: [
             {
                 sections: [
-                    {title: 'Customer Segmentation', img: '/projects/detailed-page/proj-3/top-row.png', text: 'Consumers dominate (50.56%) with strong Corporate and Home Office sales.',},
-                    {title: 'Discount Analysis', img: '/projects/detailed-page/proj-3/middle-row.png', text: "High discounts reduce profit; Tables and Bookcases drive losses.",},
-                    {title: 'City-level Breakdown', img: '/projects/detailed-page/proj-3/bottom-row.png', text: "New York, Los Angeles, and Seattle drive top sales and profits.",},
+                    {
+                        img: '/projects/detailed-page/proj-3/top-row.png',
+                        details: [
+                            {
+                                title: 'Do younger customers shop more frequently than older customers? (Bar Chart by Age Bucket)',
+                                text: 'Older customers (55–70) have the highest customer count (1178), meaning they shop more than younger age groups. So younger customers are less engaged.',
+                                decision: "Highlight comfort, quality and premium options in marketing for this age group (55+).",
+                            },
+                            {
+                                title: 'What impact do subscription statuses have on spending? (Pie Chart)',
+                                text: 'Shows that only 27% are subscribers, and they spend more on average. Subscriptions boost spending, but most customers are still non-subscribers (73%).',
+                                decision: "Offer sign-up discounts, bundle deals, or exclusive perks to increase subscriber base.",
+                            },
+                            {
+                                title: 'How does the frequency of purchases affect overall spending? (Bar Chart)',
+                                text: 'Customers who shop quarterly (69K) and fortnightly (65K) generate the highest spending, while weekly and monthly shoppers spend less. Suggests high-value customers shop less often but spend more per purchase.',
+                                decision: "Encourage quarterly and fortnightly byers with loyalty rewards.",
+                            },
+                        ]
+                    },
+                    {
+                        img: '/projects/detailed-page/proj-3/middle-row.png',
+                        details: [
+                            {
+                                title: 'Do customers in different seasons purchase certain items more often? (Bar Chart with Seasonal Slicer)',
+                                text: 'Allows filtering by season. Jackets (54) and hats (50) are the top purchased items, showing seasonal patterns in demand. Businesses can use this for seasonal promotions.',
+                                decision: "Stock more items of the items thats most preferred in peak seasons, run promotions around these items",
+                            },
+                            {
+                                title: 'Which category is more demanding? (Pie Chart)',
+                                text: 'Clothing dominates demand (44.5%), followed by accessories (31.8%) and footwear (15%). Outerwear is the smallest segment. Inventory and marketing should prioritize clothing.',
+                                decision: "Clothing should remain the main revenue driver but accessories are a strong secondary too. we can make a cross-sell accessories with clothing orders",
+                            },
+                            {
+                                title: 'Which payment methods are linked to higher purchase amounts? (Bar Chart)',
+                                text: 'PayPal (677) and Credit Cards (671) lead slightly over Cash (670). Debit Card, Venmo, and Bank Transfer are less used. This suggests promoting digital payment methods can align with customer preference.',
+                            },
+                        ]
+                    },
+                    {
+                        img: '/projects/detailed-page/proj-3/bottom-row.png',
+                        details: [
+                            {
+                                title: 'Which shipping type is most preferred ? (Line Chart)',
+                                text: 'Free Shipping (675) is the most preferred, followed by Express (654). Premium shipping options (Next Day, 2-Day Air) have low purchase amounts. Customers strongly value free/low-cost shipping.',
+                            },
+                            {
+                                title: 'Do customers spend more when discounts are applied? (Pie Chart)',
+                                text: '💹 Yes: 99K purchases vs No: 134K. Customers spend significantly more when discounts are offered, confirming discounts are an effective sales driver.',
+                                decision: "Keep using discounts, but measure profitability.",
+                            },
+                            {
+                                title: 'Which locations have the highest spending? (Bar Chart by State)',
+                                text: 'Top spenders: Montana (5.8K), Illinois (5.6K), California (5.6K). These states generate the highest purchase amounts, guiding where to focus regional campaigns.',
+                                decision: "Focus regional marketing campaigns and ads on these high-spend states.",
+                            },
+                        ]
+                    },
                 ]
             }
         ]
@@ -178,7 +236,7 @@ export const projects: ProjectProps[] = [
             },
             {
                 key: '🧮 Data Modeling & DAX calculations',
-                value: 'using relationships and Formulated measures to derive key insights and KPIS like Total sales, total profit and orders count.',
+                value: 'Using relationships and Formulated measures to derive key insights and KPIS like Total sales, total profit and orders count.',
             },
             {
                 key: '📊 Core Charts',
@@ -212,12 +270,45 @@ export const projects: ProjectProps[] = [
         content: [
             {
                 sections: [
-                    {title: 'Sales Trends', text: 'A year-by-year breakdown (2014-2017) shows consistent growth in sales with some seasonal fluctuations.',},
-                    {title: 'Category & Product Insights', text: 'Office Supplies lead sales (60.3%); Phones and Chairs top products.',},
-                    {title: 'Customer Segmentation', img: '/projects/detailed-page/proj-2/2-1.png', text: 'Consumers dominate (50.56%) with strong Corporate and Home Office sales.',},
-                    {title: 'Discount Analysis', img: '/projects/detailed-page/proj-2/2-2.png', text: "High discounts reduce profit; Tables and Bookcases drive losses.",},
-                    {title: 'Regional Analysis', text: "West & East lead sales; South shows weaker profit margins.",},
-                    {title: 'City-level Breakdown', img: '/projects/detailed-page/proj-2/2-3.png', text: "New York, Los Angeles, and Seattle drive top sales and profits.",},
+                    {
+                        img: '/projects/detailed-page/proj-2/2-1.png',
+                        details: [
+                            {
+                                title: 'Sales Trends',
+                                text: 'A year-by-year breakdown (2014-2017) shows consistent growth in sales with some seasonal fluctuations.'
+                            },
+                            {
+                                title: 'Category & Product Insights',
+                                text: 'Office Supplies lead sales (60.3%); Phones and Chairs top products.'
+                            },
+                            {
+                                title: 'Customer Segmentation',
+                                text: 'Consumers dominate (50.56%) with strong Corporate and Home Office sales.'
+                            }
+                        ]
+                    },
+                    {
+                        img: '/projects/detailed-page/proj-2/2-2.png',
+                        details: [
+                            {
+                                title: 'Discount Analysis',
+                                text: "High discounts reduce profit; Tables and Bookcases drive losses."
+                            }
+                        ]
+                    },
+                    {
+                        img: '/projects/detailed-page/proj-2/2-3.png',
+                        details: [
+                            {
+                                title: 'Regional Analysis',
+                                text: "West & East lead sales; South shows weaker profit margins."
+                            },
+                            {
+                                title: 'City-level Breakdown',
+                                text: "New York, Los Angeles, and Seattle drive top sales and profits."
+                            }
+                        ]
+                    },
                 ]
             }
         ]
@@ -287,8 +378,24 @@ export const projects: ProjectProps[] = [
         content: [
             {
                 sections: [
-                    {title: 'High-Level market view', img: '/projects/home-section/proj_1-1.jpeg', text: "This is your mission control for the data job market. It showcases key KPIS like total job count, median salaries, and top job titles to give you a quick understanding of what's happening in the job market at a glance."},
-                    {title: 'Drill through job title', img: '/projects/home-section/proj_1-2.jpeg', text: "This is the deep-dive page. From the main dashboard, you can drill through to this view to get specific details for a single job title, including salary ranges, work-from-home stats, top hiring platforms, and a global map of job locations."},
+                    {
+                        img: '/projects/home-section/proj_1-1.jpeg',
+                        details: [
+                            {
+                                title: 'High-Level market view',
+                                text: "This is your mission control for the data job market. It showcases key KPIS like total job count, median salaries, and top job titles to give you a quick understanding of what's happening in the job market at a glance."
+                            },
+                        ]
+                    },
+                    {
+                        img: '/projects/home-section/proj_1-2.jpeg',
+                        details: [
+                            {
+                                title: 'Drill through job title',
+                                text: "This is the deep-dive page. From the main dashboard, you can drill through to this view to get specific details for a single job title, including salary ranges, work-from-home stats, top hiring platforms, and a global map of job locations."
+                            },
+                        ]
+                    },
                 ]
             },
         ]
