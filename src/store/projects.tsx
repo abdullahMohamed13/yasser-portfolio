@@ -48,10 +48,91 @@ const iconSize = 'w-6 h-6'
 
 export const projects: ProjectProps[] = [
     {
-        id: 0,
-        name: 'Comprehensive Sales Performance Dashboard',
-        imgSrc: ['/projects/2.jpeg'],
-        description: 'An advanced interactive dashboard that transforms complex sales data into clear, actionable insights for smarter business decisions.',
+        id: 2,
+        name: 'Marketing Analytics Dashboard',
+        imgSrc: ['/projects/home-section/proj-3.png'],
+        description: 'A project for exploring customer purchasing behavior — uncovering how factors like location, age, season, discounts, payment methods, and shipping preferences influence overall spending patterns.',
+        detailedDescription: "This project analyzes customer purchasing data to uncover insights into spending behavior across various factors such as location, age, purchase frequency, seasonality, discounts, payment methods, shipping preferences, and subscription status. It identifies high-spending regions, compares shopping trends between younger and older customers, examines how purchase frequency and seasonal patterns affect spending, evaluates the impact of discounts and promo codes, and explores which payment and shipping options are most preferred. The findings help businesses understand customer behavior more deeply and make data-driven decisions to improve sales strategies and customer engagement.",
+        links: [
+            {
+                name: 'Github Repo',
+                href: 'https://github.com/YasserAllam/Customer-Marketing-Analysis',
+                icon: <FaGithub className='cursor-pointer hover:text-foreground/50' size={50} />
+            },
+            {
+                name: 'Linkedin Post',
+                href: '',
+                icon: <FaLinkedin className='cursor-pointer hover:text-[#0a66c2]' size={50} />
+        }],
+        techStack: [
+            {
+                name: 'PQ',
+                icon: <img src={MicrosoftPQLogo} alt="Microsoft Power Query Logo" className={iconSize} />
+            },
+            {
+                name: 'Power BI',
+                icon: <img src={PowerBILogo} alt="Power BI Logo" className={iconSize} />,
+            },
+            {
+                name: 'Excel',
+                icon: <img src={ExcelLogo} alt="Excel Logo" className={iconSize} />
+            },
+            {
+                name: 'DAX',
+                icon: <img src={DaxLogo} alt="DAX Logo" className={iconSize} />
+            },
+            ],
+        skillsDemonstrated: [
+            {
+                key: '🧹 Data Cleaning & Preparation',
+                value: '(Excel → Power BI integration)',
+            },
+            {
+                key: '⚙️ Data Transformation (ETL) with Power Query',
+                value: 'Cleaned, shaped, and prepared the raw data for analysis by handling blanks, changing data types, and creating new columns.',
+            },
+            {
+                key: '🧮 Data Modeling & DAX calculations',
+                value: 'using relationships and Formulated measures to derive key insights and KPIS like Total sales, total profit and orders count.',
+            },
+            {
+                key: '📊 Core Charts',
+                value: 'Utilized Column, Bar, Line, scatter chart and tables',
+            },
+            {
+                key: '🎨 Dashboard Design',
+                value: 'Designed an intuitive and visually appealing layout, exploring both common and uncommon chart types to best tell the data story.',
+            },
+        ],
+        KPIs: {
+            img: '/projects/detailed-page/proj-3/side_analysis.png',
+            items: [
+                {key: 'Unique Customers', value: '3.9K'},
+                {key: 'Purchase Amount', value: '233K'},
+            ]},
+        businessValue: [
+            'Understand customer behavior and preferences across multiple dimensions.',
+            'Target the right audience with personalized marketing strategies.',
+            'Optimize promotional campaigns based on spending and seasonal trends.',
+            'Enhance logistics by identifying preferred shipping methods and regions.',
+            'Allocate resources effectively toward high-value customers and areas.',
+            'Enable data-driven decisions to boost sales, customer satisfaction, and profitability.'
+        ],
+        content: [
+            {
+                sections: [
+                    {title: 'Customer Segmentation', img: '/projects/detailed-page/proj-3/top-row.png', text: 'Consumers dominate (50.56%) with strong Corporate and Home Office sales.',},
+                    {title: 'Discount Analysis', img: '/projects/detailed-page/proj-3/middle-row.png', text: "High discounts reduce profit; Tables and Bookcases drive losses.",},
+                    {title: 'City-level Breakdown', img: '/projects/detailed-page/proj-3/bottom-row.png', text: "New York, Los Angeles, and Seattle drive top sales and profits.",},
+                ]
+            }
+        ]
+    },
+    {
+        id: 1,
+        name: 'Sales Performance Dashboard',
+        imgSrc: ['/projects/home-section/proj-2.jpeg'],
+        description: 'An interactive Power BI dashboard that visualizes key KPIs, sales trends, and customer insights—helping businesses identify top products, assess discount impact, and make data-driven decisions to boost growth and profitability.',
         detailedDescription: "This interactive Sales Dashboard was built in Power BI to analyze and monitor key business performance metrics. It provides a clear view of sales performance, profitability, discount impact, and customer trends, allowing stakeholders to make data-driven decision",
         links: [
             {
@@ -113,7 +194,7 @@ export const projects: ProjectProps[] = [
             },
         ],
         KPIs: {
-            img: '/projects/project-2-kpis.png',
+            img: '/projects/detailed-page/proj-2/kpis.png',
             items: [
                 {key: 'Total Sales', value: '2.3M'},
                 {key: 'Total Profit', value: '286K'},
@@ -133,19 +214,18 @@ export const projects: ProjectProps[] = [
                 sections: [
                     {title: 'Sales Trends', text: 'A year-by-year breakdown (2014-2017) shows consistent growth in sales with some seasonal fluctuations.',},
                     {title: 'Category & Product Insights', text: 'Office Supplies lead sales (60.3%); Phones and Chairs top products.',},
-                    {title: 'Customer Segmentation', img: '/projects/2-1.png', text: 'Consumers dominate (50.56%) with strong Corporate and Home Office sales.',},
-                    {title: 'Discount Analysis', img: '/projects/2-2.png', text: "High discounts reduce profit; Tables and Bookcases drive losses.",},
+                    {title: 'Customer Segmentation', img: '/projects/detailed-page/proj-2/2-1.png', text: 'Consumers dominate (50.56%) with strong Corporate and Home Office sales.',},
+                    {title: 'Discount Analysis', img: '/projects/detailed-page/proj-2/2-2.png', text: "High discounts reduce profit; Tables and Bookcases drive losses.",},
                     {title: 'Regional Analysis', text: "West & East lead sales; South shows weaker profit margins.",},
-                    {title: 'City-level Breakdown', img: '/projects/2-3.png', text: "New York, Los Angeles, and Seattle drive top sales and profits.",},
+                    {title: 'City-level Breakdown', img: '/projects/detailed-page/proj-2/2-3.png', text: "New York, Los Angeles, and Seattle drive top sales and profits.",},
                 ]
             }
         ]
     },
-    
     {
-        id: 1,
+        id: 0,
         name: 'Data Jobs Dashboard',
-        imgSrc: ['/projects/1-1.jpeg', '/projects/1-2.jpeg'],
+        imgSrc: ['/projects/home-section/proj_1-1.jpeg', '/projects/home-section/proj_1-2.jpeg'],
         description: 'A comprehensive Data Jobs Dashboard for job seekers, career transitioners, and market researchers',
         detailedDescription: 'This dashboard was created for Job Seekers, Job Transtioners, and Job Sweepers to solve a common problem: information about the data job market is scattered and hard to grasp. Using a real-world dataset of 2024 data science job posting (Including titles, salaries, and locations), this project provides a single, easy-to-use interface to explore market trends and compernsation. I made this dashboard as part of a learning tutorial was going through',
         conclusion: 'This dashboard showcases how Power BI can transform raw job posting data into a powerful tool for career analysis. It allows users to slice, filter, and drill through data to make informed decisions about their career path.',
@@ -207,8 +287,8 @@ export const projects: ProjectProps[] = [
         content: [
             {
                 sections: [
-                    {title: 'High-Level market view', img: '/projects/1-1.jpeg', text: "This is your mission control for the data job market. It showcases key KPIS like total job count, median salaries, and top job titles to give you a quick understanding of what's happening in the job market at a glance."},
-                    {title: 'Drill through job title', img: '/projects/1-2.jpeg', text: "This is the deep-dive page. From the main dashboard, you can drill through to this view to get specific details for a single job title, including salary ranges, work-from-home stats, top hiring platforms, and a global map of job locations."},
+                    {title: 'High-Level market view', img: '/projects/home-section/proj_1-1.jpeg', text: "This is your mission control for the data job market. It showcases key KPIS like total job count, median salaries, and top job titles to give you a quick understanding of what's happening in the job market at a glance."},
+                    {title: 'Drill through job title', img: '/projects/home-section/proj_1-2.jpeg', text: "This is the deep-dive page. From the main dashboard, you can drill through to this view to get specific details for a single job title, including salary ranges, work-from-home stats, top hiring platforms, and a global map of job locations."},
                 ]
             },
         ]

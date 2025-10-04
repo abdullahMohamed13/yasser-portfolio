@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
 import { useNavigate, useLocation } from "react-router-dom"
-import { AppSidebar } from "./app-sidebar"
+import { AppSidebar } from "./desktop-sidebar"
 import { navigationItems, handleNavigation } from '@/utils/navigation'
 import { ModeToggle } from "./mode-toggle"
 import { useState } from "react"
@@ -33,7 +33,10 @@ export function ResponsiveNav() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="px-3" aria-describedby='Nav menu'>
-              <p className="text-xl py-4 border-b">Navigation Menu</p>
+              <SheetTitle className="text-xl py-4 border-b">Navigation Menu</SheetTitle>
+              <SheetDescription className="sr-only">
+                Navigate to different sections of the portfolio
+              </SheetDescription>
               <nav className="flex flex-col gap-2">
                 {navigationItems.map((item, index) => (
                   <Button

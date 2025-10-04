@@ -28,10 +28,10 @@ export default function ProjectsSection() {
             </Badge>
         </div>
 
-{/*  lg:grid-cols-4 */}
         <div className="mt-5 grid grid-cols-1 sm:grids-cols-2 md:grid-cols-3 gap-5">
             {projects.map((proj, index) => (
                 <ProjectCard 
+                    key={index}
                     id={index}
                     name={proj.name}
                     description={proj.description}

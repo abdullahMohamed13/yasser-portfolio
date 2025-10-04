@@ -17,9 +17,10 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import { SiWhatsapp } from 'react-icons/si'
 import { TextRevealButton } from "./ui/shadcn-io/text-reveal-button"
 import TypingText from "@/components/ui/shadcn-io/typing-text/index";
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { navigationItems, handleNavigation } from '@/utils/navigation'
 import { contacts, handleWhatsappClick } from "@/store/contacts";
+import { projects } from "@/store/projects"
 
 export function AppSidebar() {
   const navigate = useNavigate();
@@ -73,13 +74,38 @@ export function AppSidebar() {
               {navigationItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <Button
-                      variant='link'
-                      onClick={() => handleNavigation(item.url, navigate, location)}
-                      className="w-full text-foreground cursor-pointer flex gap-2 justify-start">
-                      {item.icon}
-                      <span>{item.title}</span>
-                    </Button>
+                    {item.title === 'Projects' ?
+                      (
+                        <>
+                          <Button
+                            variant='ghost'
+                            className="w-full cursor-default flex gap-2 justify-start">
+                            {item.icon}
+                            <span>{item.title}</span>
+                          </Button>
+                          <div>
+                            {projects.map((proj, index) => {
+                              return <Button
+                               key={index}
+                                variant='link'
+                                className="ml-2 w-full text-muted-foreground hover:text-foreground cursor-pointer justify-start">
+                                  <Link to={`/projects/${proj.name}`}>
+                                    {proj.name}
+                                  </Link>
+                              </Button>
+                            })}
+                          </div>
+                        </>
+                      ) : (
+                        <Button
+                          variant='link'
+                          onClick={() => handleNavigation(item.url, navigate, location)}
+                          className="w-full text-foreground cursor-pointer flex gap-2 justify-start">
+                          {item.icon}
+                          <span>{item.title}</span>
+                        </Button>
+                      )
+                    }
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

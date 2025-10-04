@@ -10,6 +10,11 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import {
+    Dialog,
+    DialogTrigger,
+    DialogContent,
+} from "@/components/ui/dialog";
 import { KPITable } from "@/components/kpi-table";
 import { Separator } from "@/components/ui/separator";
 import HeaderSection from "@/components/HeaderSection";
@@ -84,12 +89,23 @@ export default function ProjectDetails() {
                   {/* Image */}
                   {section.img && (
                     <div className="flex-1 flex justify-center items-center">
-                      <img
-                        src={section.img}
-                        className="rounded-xl w-full sm:max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain bg-muted p-2"
-                        alt={section.title || "Dashboard Img"}
-                        aria-label="Dashboard Img"
-                      />
+                      <Dialog>
+                        <DialogTrigger>
+                          <img
+                            src={section.img}
+                            className="rounded-xl cursor-pointer w-full sm:max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain bg-muted p-2"
+                            alt={section.title || "Dashboard Img"}
+                            aria-label="Dashboard Img"
+                          />
+                        </DialogTrigger>
+                        <DialogContent>
+                          <img
+                            src={section.img}
+                            alt={section.title || "Dashboard Img"}
+                            aria-label="Dashboard Img"
+                          />
+                        </DialogContent>
+                    </Dialog>
                     </div>
                   )}
                 </div>
@@ -165,7 +181,7 @@ export default function ProjectDetails() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 justify-center"
+              className="flex text-white items-center gap-2 justify-center"
             >
               {link.icon}
               {link.name}

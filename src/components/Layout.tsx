@@ -1,7 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import Footer from './Footer';
 import ScrollToTopComponent from './ScrollToTopComponent';
-import { Separator } from './ui/separator';
 import { ResponsiveNav } from './ResponsiveNav';
 import { motion } from "framer-motion"
 
@@ -14,10 +12,8 @@ export default function Layout() {
       className="w-full px-4 flex flex-col md:flex-row gap-2 mb-10"
     >
       <ResponsiveNav />
-      <div className="mt-5 md:mt-10 flex-1">
+      <div className="my-5 md:my-10 flex-1">
         <Outlet />
-        <Separator className="mt-7" />
-        <Footer />
       </div>
       <ScrollToTopComponent />
     </motion.main>

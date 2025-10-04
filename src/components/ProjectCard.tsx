@@ -50,21 +50,21 @@ export default function ProjectCard({id, imgSrc, name, description, links, techS
                             <DialogHeader>
                                 <DialogTitle>{name}</DialogTitle>
                             </DialogHeader>
-                            <Carousel>
-                                <CarouselContent>
-                                    {imgSrc.map((src, index) => (
-                                        <CarouselItem key={index}>
-                                            <img src={src} alt="Project Image"/>
-                                        </CarouselItem>
-                                    ))}
-                                </CarouselContent>
-                                {imgSrc.length > 1 && (
-                                    <>
-                                        <CarouselPrevious className="-mx-[15px]" />
-                                        <CarouselNext className="-mx-[15px]" />
-                                    </>
-                                )}
-                            </Carousel>
+                            {imgSrc.length > 1 ? (
+                                <Carousel>
+                                    <CarouselContent>
+                                        {imgSrc.map((src, index) => (
+                                            <CarouselItem key={index}>
+                                                <img src={src} alt="Project Image"/>
+                                            </CarouselItem>
+                                        ))}
+                                    </CarouselContent>
+                                    <CarouselPrevious className="-mx-[20px]" />
+                                    <CarouselNext className="-mx-[20px]" />
+                                </Carousel>
+                            ) : (
+                                <img src={imgSrc[0]} alt="Project Image" />
+                            )}
                         </DialogContent>
                     </Dialog>
                 </div>
