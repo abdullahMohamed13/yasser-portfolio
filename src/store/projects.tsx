@@ -25,7 +25,8 @@ export interface ProjectProps {
     conclusion?: string
     content?: {
         sections:{
-            img?: string
+            img: string
+            header?: string
             details: {
                 title?: string
                 text?: string
@@ -33,6 +34,7 @@ export interface ProjectProps {
             }[]
         }[]
     }[]
+    problemsToSolve?: string[]
     skillsDemonstrated?: {
         key: string
         value: string
@@ -56,6 +58,16 @@ export const projects: ProjectProps[] = [
         imgSrc: ['/projects/home-section/proj-3.png'],
         description: 'A project for exploring customer purchasing behavior — uncovering how factors like location, age, season, discounts, payment methods, and shipping preferences influence overall spending patterns.',
         detailedDescription: "This project analyzes customer purchasing data to uncover insights into spending behavior across various factors such as location, age, purchase frequency, seasonality, discounts, payment methods, shipping preferences, and subscription status. It identifies high-spending regions, compares shopping trends between younger and older customers, examines how purchase frequency and seasonal patterns affect spending, evaluates the impact of discounts and promo codes, and explores which payment and shipping options are most preferred. The findings help businesses understand customer behavior more deeply and make data-driven decisions to improve sales strategies and customer engagement.",
+        problemsToSolve: [
+            'Which location have the highest spending or purchase frequency?',
+            'Do younger customers shop more frequently than older customers.',
+            'How does the frequency of purchases (weekly, monthly, annually) affect overall spending?',
+            'Do customers in different seasons (Winter, Summer, etc.) purchase certain items more often?',
+            'Do customers spend more when discounts or promo codes are applied?',
+            'Which payment methods (Credit Card, PayPal, Cash, etc.) are linked to higher purchase amounts?',
+            'Which shipping type (Express, Free Shipping, Store Pickup, etc.) is most preferred?',
+            'What impact do subscription status have on spending?',
+        ],
         links: [
             {
                 name: 'Github Repo',
@@ -126,10 +138,11 @@ export const projects: ProjectProps[] = [
                 sections: [
                     {
                         img: '/projects/detailed-page/proj-3/top-row.png',
+                        header: 'Top Row Breakdown',
                         details: [
                             {
                                 title: 'Do younger customers shop more frequently than older customers? (Bar Chart by Age Bucket)',
-                                text: 'Older customers (55–70) have the highest customer count (1178), meaning they shop more than younger age groups. So younger customers are less engaged.',
+                                text: 'Older customers (55-70) have the highest customer count (1178), meaning they shop more than younger age groups. So younger customers are less engaged.',
                                 decision: "Highlight comfort, quality and premium options in marketing for this age group (55+).",
                             },
                             {
@@ -140,12 +153,13 @@ export const projects: ProjectProps[] = [
                             {
                                 title: 'How does the frequency of purchases affect overall spending? (Bar Chart)',
                                 text: 'Customers who shop quarterly (69K) and fortnightly (65K) generate the highest spending, while weekly and monthly shoppers spend less. Suggests high-value customers shop less often but spend more per purchase.',
-                                decision: "Encourage quarterly and fortnightly byers with loyalty rewards.",
+                                decision: "Encourage quarterly and fortnightly buyers with loyalty rewards.",
                             },
                         ]
                     },
                     {
                         img: '/projects/detailed-page/proj-3/middle-row.png',
+                        header: 'Middle Row Breakdown',
                         details: [
                             {
                                 title: 'Do customers in different seasons purchase certain items more often? (Bar Chart with Seasonal Slicer)',
@@ -165,6 +179,7 @@ export const projects: ProjectProps[] = [
                     },
                     {
                         img: '/projects/detailed-page/proj-3/bottom-row.png',
+                        header: 'Bottom Row Breakdown',
                         details: [
                             {
                                 title: 'Which shipping type is most preferred ? (Line Chart)',
@@ -172,7 +187,7 @@ export const projects: ProjectProps[] = [
                             },
                             {
                                 title: 'Do customers spend more when discounts are applied? (Pie Chart)',
-                                text: '💹 Yes: 99K purchases vs No: 134K. Customers spend significantly more when discounts are offered, confirming discounts are an effective sales driver.',
+                                text: 'Yes: 99K purchases VS No: 134K. Customers spend significantly more when discounts are offered, confirming discounts are an effective sales driver.',
                                 decision: "Keep using discounts, but measure profitability.",
                             },
                             {
@@ -254,10 +269,10 @@ export const projects: ProjectProps[] = [
         KPIs: {
             img: '/projects/detailed-page/proj-2/kpis.png',
             items: [
-                {key: 'Total Sales', value: '2.3M'},
-                {key: 'Total Profit', value: '286K'},
                 {key: 'Total Quantity', value: '38K'},
                 {key: 'Total Shipping Cost', value: '226K'},
+                {key: 'Total Profit', value: '286K'},
+                {key: 'Total Sales', value: '2.3M'},
                 {key: 'Cost of Goods Sold', value: '1.69M'},
                 {key: 'Discount Value', value: '323K'},
             ]},
@@ -272,6 +287,7 @@ export const projects: ProjectProps[] = [
                 sections: [
                     {
                         img: '/projects/detailed-page/proj-2/2-1.png',
+                        header: 'Business Performance Insights',
                         details: [
                             {
                                 title: 'Sales Trends',
@@ -289,15 +305,16 @@ export const projects: ProjectProps[] = [
                     },
                     {
                         img: '/projects/detailed-page/proj-2/2-2.png',
+                        header: 'Discount Analysis',
                         details: [
                             {
-                                title: 'Discount Analysis',
                                 text: "High discounts reduce profit; Tables and Bookcases drive losses."
                             }
                         ]
                     },
                     {
                         img: '/projects/detailed-page/proj-2/2-3.png',
+                        header: 'Geographic Sales & Profit Analysis',
                         details: [
                             {
                                 title: 'Regional Analysis',
@@ -380,19 +397,111 @@ export const projects: ProjectProps[] = [
                 sections: [
                     {
                         img: '/projects/home-section/proj_1-1.jpeg',
+                        header: 'Page 1: High-Level market view',
                         details: [
                             {
-                                title: 'High-Level market view',
                                 text: "This is your mission control for the data job market. It showcases key KPIS like total job count, median salaries, and top job titles to give you a quick understanding of what's happening in the job market at a glance."
                             },
                         ]
                     },
                     {
-                        img: '/projects/home-section/proj_1-2.jpeg',
+                        img: '/projects/detailed-page/proj-1/page1-top-row.png',
+                        header: 'Top Row Breakdown',
                         details: [
                             {
-                                title: 'Drill through job title',
+                                title: 'Jobs posted count (479K)',
+                                text: "Displays the total number of job postings analyzed in the dataset."
+                            },
+                            {
+                                title: 'Median Yearly Salary ($113K)',
+                                text: "The overall median annual salary for all data jobs analyzed."
+                            },
+                            {
+                                title: 'Median Hourly Salary ($47.62)',
+                                text: "The overall median hourly rate for all data jobs analyzed."
+                            },
+                        ]
+                    },
+                    {
+                        img: '/projects/detailed-page/proj-1/page1-middle-row.png',
+                        header: 'Middle Row Breakdown',
+                        details: [
+                            {
+                                title: 'What Is the Trend of Jobs in 2024?',
+                                text: "Job demand peaked mid-year (around 51K postings in July) but dropped sharply toward September-October, before slightly rebounding in November. This may indicate seasonal or budget-cycle influences in hiring."
+                            },
+                            {
+                                title: 'Yearly vs Hourly Salary of Data Jobs',
+                                text: "Data Engineer and Machine Learning Engineer roles offer the highest yearly and hourly salaries, while Data Analysts are on the lower end. Salary growth correlates strongly with experience and technical specialization."
+                            },
+                        ]
+                    },
+                    {
+                        img: '/projects/detailed-page/proj-1/page1-bottom-row.png',
+                        header: 'Bottom Row Breakdown',
+                        details: [
+                            {
+                                title: 'What Is the Top Job in Data?',
+                                text: "Data Engineer and Data Analyst are the top two in-demand roles, followed by Data Scientist. This shows the market's high need for roles that manage and interpret data pipelines."
+                            },
+                            {
+                                title: 'Job Stats (Table)',
+                                text: "A detailed table summarizes job counts, median yearly and hourly salaries, and trend sparklines for each role, showing that Data Engineers hold the highest job count (≈129K), senior roles such as Senior Data Scientist and Machine Learning Engineer earn the top salaries ($140K+), and the overall data job market remains diverse with steadily increasing salaries across seniority levels."
+                            },
+                        ]
+                    },
+                    {
+                        img: '/projects/home-section/proj_1-2.jpeg',
+                        header: 'Page 2: Drill through job title',
+                        details: [
+                            {
                                 text: "This is the deep-dive page. From the main dashboard, you can drill through to this view to get specific details for a single job title, including salary ranges, work-from-home stats, top hiring platforms, and a global map of job locations."
+                            },
+                        ]
+                    },
+                    {
+                        img: '/projects/detailed-page/proj-1/page2-top-row.png',
+                        header: 'Top Row Breakdown',
+                        details: [
+                            {
+                                title: 'Median yearly and hourly salary',
+                                text: "The median salary specific to the selected job role."
+                            },
+                            {
+                                title: 'Health Insurance %, No Degree Mentioned %, Working From Home %',
+                                text: "Shows percentages of job listings mentioning health benefits, no degree requirements, and remote work options for the selected role."
+                            },
+                        ]
+                    },
+                    {
+                        img: '/projects/detailed-page/proj-1/page2-middle-row.png',
+                        header: 'Middle Row Breakdown',
+                        details: [
+                            {
+                                title: 'Job globally ',
+                                text: "Displays the worldwide distribution of the selected role job postings."
+                            },
+                            {
+                                title: 'Where Can Developers Earn the Most?',
+                                text: "Shows median salaries across different technologies or frameworks associated with the selected role."
+                            },
+                        ]
+                    },
+                    {
+                        img: '/projects/detailed-page/proj-1/page2-bottom-row.png',
+                        header: 'Bottom Row Breakdown',
+                        details: [
+                            {
+                                title: 'What Are the Most Wanted Skills?',
+                                text: "Lists the most in-demand technical skills for the selected role based on job postings."
+                            },
+                            {
+                                title: 'Top Platform',
+                                text: "Shows which job posting platforms post's the most for the selected role"
+                            },
+                            {
+                                title: 'Job Schedule Type',
+                                text: "Displays distribution of job types (full-time, part-time, contract, etc.) for the selected role."
                             },
                         ]
                     },

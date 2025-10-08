@@ -1,4 +1,7 @@
-import { ModeToggle } from "./mode-toggle"
+import { useNavigate, useLocation, Link } from 'react-router-dom'
+// Custom components
+import { ModeToggle } from "../mode-toggle"
+// Shadcn components
 import {
   Sidebar,
   SidebarContent,
@@ -11,24 +14,28 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { Button } from "../ui/button"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
 
-import { Button } from "./ui/button"
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
-import { SiWhatsapp } from 'react-icons/si'
-import { TextRevealButton } from "./ui/shadcn-io/text-reveal-button"
+// Animated components
+import { TextRevealButton } from "../ui/shadcn-io/text-reveal-button"
 import TypingText from "@/components/ui/shadcn-io/typing-text/index";
-import { useNavigate, useLocation, Link } from 'react-router-dom'
-import { navigationItems, handleNavigation } from '@/utils/navigation'
+// Store
 import { contacts, handleWhatsappClick } from "@/store/contacts";
 import { projects } from "@/store/projects"
+import { handleNavigation } from '@/utils/handleNavigation'
+
+// icons
+import { SiWhatsapp } from 'react-icons/si'
 import { FaLink } from "react-icons/fa";
+import { navigationElements } from '@/store/navigationElements'
 
 export function AppSidebar() {
   const navigate = useNavigate();
   const location = useLocation();
 
   return (
-    <Sidebar> {/* Show variants */}
+    <Sidebar>
       <SidebarHeader className="pt-3.5">
           <div className="flex justify-between items-center">
               <img className="w-35 h-35 border-3 border-border rounded-full" src="/me.png" alt="My Photo" />
@@ -72,24 +79,26 @@ export function AppSidebar() {
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {navigationItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
+              {navigationElements.map((item) => (
+                <SidebarMenuItem key={item.label}>
                   <SidebarMenuButton asChild>
-                    {item.title === 'Projects' ?
+                    {item.label === 'Projects' ?
                       (
                         <>
                           <Button
-                            variant='ghost'
-                            className="w-full cursor-default flex gap-2 justify-start">
+                            variant='link'
+                            className="w-full flex gap-2 justify-start"
+                            onClick={() => handleNavigation(item.href, navigate, location)}
+                            >
                             {item.icon}
-                            <span>{item.title}</span>
+                            <span>{item.label}</span>
                           </Button>
                           <div>
                             {projects.map((proj, index) => {
                               return <Button
                                key={index}
                                 variant='link'
-                                className="ml-1 w-full text-muted-foreground hover:text-foreground cursor-pointer justify-start">
+                                className="ml-1 w-full text-muted-foreground hover:text-primary cursor-pointer justify-start">
                                   <Link className="flex items-center gap-1" to={`/projects/${proj.name}`}>
                                     <FaLink />{proj.name}
                                   </Link>
@@ -100,10 +109,10 @@ export function AppSidebar() {
                       ) : (
                         <Button
                           variant='link'
-                          onClick={() => handleNavigation(item.url, navigate, location)}
-                          className="w-full text-foreground cursor-pointer flex gap-2 justify-start">
+                          onClick={() => handleNavigation(item.href, navigate, location)}
+                          className="w-full text-foreground flex gap-2 justify-start">
                           {item.icon}
-                          <span>{item.title}</span>
+                          <span>{item.label}</span>
                         </Button>
                       )
                     }
@@ -115,17 +124,19 @@ export function AppSidebar() {
 
         </SidebarGroup>
       </SidebarContent>
+
+      {/* Footer */}
       <SidebarFooter className="flex items-start">
-        <Button variant='destructive' size='sm'>
-            <a target="_blank" href="https://yasser-portfolio-kappa.vercel.app">
-                My Previous Experience    
-            </a>
-        </Button>
-        {/* <Button size='sm' variant='destructive'>
+        <Button size='sm' variant='destructive'>
             <a href="/resume.pdf" download>
                 Download My Resume
             </a>
-        </Button> */}
+        </Button>
+        <Button variant='outline' size='sm'>
+            <a target="_blank" className='hover:underline' href="https://yasser-portfolio-kappa.vercel.app">
+                My Previous Experience    
+            </a>
+        </Button>
       </SidebarFooter>
     </Sidebar>
   )

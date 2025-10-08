@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 
 export default function About() {
 
-return <section id="about">
+    return <section id="about">
 
         <HeroSection />
         
@@ -12,7 +12,7 @@ return <section id="about">
             
         <div className="mt-5 flex flex-col text-lg text-center md:text-left gap-3">
             <p>
-                Hi, I'm <span className="text-primary font-semibold">Yasser Allam</span>,
+                I am <span className="text-primary font-semibold">Yasser Allam</span>,
                 a <strong className="text-primary"> Data Analyst </strong>
                 holding a Bachelor's degree in Systems and Information Sciences.
                 I enjoy working with tools like {''}
@@ -24,7 +24,6 @@ return <section id="about">
                 {' '}<Badge variant='secondary' className="text-base"><strong> DAX</strong></Badge> {''}
                 to turn raw data
                 into meaningful insights.
-
             </p>
             <p>
                 I've already built several projects

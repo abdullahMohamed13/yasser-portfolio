@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import ScrollToTopComponent from './ScrollToTopComponent';
-import { ResponsiveNav } from './ResponsiveNav';
+import { ResponsiveNav } from './navbar/ResponsiveNavbar';
 import { motion } from "framer-motion"
 
 export default function Layout() {
@@ -12,7 +12,7 @@ export default function Layout() {
       className="w-full px-4 flex flex-col md:flex-row gap-2 mb-10"
     >
       <ResponsiveNav />
-      <div className="my-5 md:my-10 flex-1">
+      <div className="my-5 md:my-15 flex-1">
         <Outlet />
       </div>
       <ScrollToTopComponent />

@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+// store
 import { projects } from "@/store/projects";
-import { useNavigate } from "react-router-dom";
+// shadcn Components
 import { Button } from "@/components/ui/button";
 import {
   Breadcrumb,
@@ -15,16 +16,21 @@ import {
     DialogTrigger,
     DialogContent,
 } from "@/components/ui/dialog";
-import { KPITable } from "@/components/kpi-table";
+import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+// Custom Components
 import HeaderSection from "@/components/HeaderSection";
-import { MdOutlineInsights } from 'react-icons/md'
-// import { MdOutlineDashboard } from 'react-icons/md'
-// import { HiOutlineLightBulb } from 'react-icons/hi'
-// import { HiOutlineDocumentText } from 'react-icons/hi'
+import { KPITable } from "@/components/kpi-table";
+
+// icons
+import {
+  MdOutlineInsights,
+} from "react-icons/md"
+import { handleNavigation } from "@/utils/handleNavigation";
 
 export default function ProjectDetails() {
   const navigate = useNavigate()
+  const location = useLocation()
   const { name } = useParams<{ name: string }>();
   const project = projects.find((p) => p.name === (name));
 
@@ -34,15 +40,15 @@ export default function ProjectDetails() {
       <Button onClick={() => navigate('/')}>Return Home</Button>
     </div>;
 
-  return (
-    <main className="flex flex-col gap-4 md:gap-6">
+return (
+    <main className="w-full flex flex-col gap-4 md:gap-6">
       <Breadcrumb className="mb-2">
         <BreadcrumbList>
           <BreadcrumbItem className="cursor-pointer" onClick={() => navigate('/')}>
             <BreadcrumbLink>Home</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
-          <BreadcrumbItem>
+          <BreadcrumbItem className="cursor-pointer" onClick={() => handleNavigation('#projects', navigate, location)}>
             <BreadcrumbLink>#Projects</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
@@ -72,63 +78,71 @@ export default function ProjectDetails() {
       <Separator />
 
       <div>
-        <HeaderSection text="Project Break Down" />
-        <div className="flex flex-col gap-8">
-          {project.content?.map((block, blockIndex) => (
-            <div key={blockIndex} className="flex flex-col gap-2 md:gap-4 mt-4">
-              {block.sections.map((section, sectionIndex) => (
-                <div
-                  key={sectionIndex}
-                  className={`flex flex-col gap-6 rounded-2xl border p-6 shadow-sm bg-card transition hover:shadow-md ${
-                    sectionIndex % 2 !== 0 ? "md:flex-row-reverse" : ""
-                  }`}
-                >
-                  {/* Text Content */}
-                  {section.details.map((detail, index) => {
-                    return <div key={index} className="flex-1 gap-2 flex flex-col justify-center">
-                      <h3 className="text-xl text-primary font-semibold flex items-center gap-2 mb-3">
-                        <MdOutlineInsights className="text-primary w-5 h-5" />
-                        {detail.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {detail.text}
-                      </p>
-                      {detail.decision && (
-                        <p className="text-muted-foreground leading-relaxed">
-                          <span className="text-foreground">Decision: </span>{detail.decision}
-                        </p>
+        <HeaderSection text="Insights breakdown" />
+        {project.content?.map((block, blockIndex) => (
+          // All projects card
+          <div key={blockIndex} className="flex flex-col gap-2 md:gap-4 mt-4">
+            {block.sections.map((section, sectionIndex) => (
+              // Single project card
+              <div
+                key={sectionIndex}
+                className="w-full flex flex-col gap-6 rounded-2xl border p-6 shadow-sm bg-card transition hover:shadow-md"
+              >
+                {/* Card Header */}
+                {section.header && (
+                  <Badge variant='destructive' className="self-center md:self-start text-lg">{section.header}</Badge>
+                )}
+
+                {/* Text Content */}
+                {section.details.map((detail, index) => {
+                  return <div key={index} className="flex-1 gap-2 flex flex-col justify-center">
+                      {detail.title && (
+                        <h3 className="text-xl text-primary font-semibold flex items-center gap-2">
+                            {detail.title}
+                        </h3>
                       )}
-                    </div>
-                  })}
-                  
-                  {/* Image */}
-                  {section.img && (
-                    // flex-1
-                    <div className="flex justify-center items-center">
-                      <Dialog>
-                        <DialogTrigger>
-                          <img
-                            src={section.img}
-                            className="rounded-xl cursor-pointer w-full sm:max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain bg-muted p-2"
-                            alt="Dashboard Img"
-                            aria-label="Dashboard Img"
-                          />
-                        </DialogTrigger>
-                        <DialogContent>
-                          <img
-                            src={section.img}
-                            alt="Dashboard Img"
-                            aria-label="Dashboard Img"
-                          />
-                        </DialogContent>
-                    </Dialog>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
+                    <p className="leading-relaxed">
+                      <span className="font-bold text-xl">-</span> {detail.text}
+                    </p>
+                    {/* Decision Section */}
+                    {detail.decision && (
+                      <div className="flex flex-col md:flex-row items-center gap-2">
+                        <Badge className="text-base" variant='secondary'><MdOutlineInsights className="text-primary w-5 h-5" /> Decision:</Badge>
+                        {' '}
+                        <span className="text-foreground/70">{detail.decision}</span>
+                      </div>
+                    )}
+                  </div>
+                })}
+                
+                {/* Image */}
+                {section.img && (
+                  // flex-1
+                  <div className="flex justify-center items-center">
+                    <Dialog>
+                      <DialogTrigger>
+                        <img
+                          src={section.img}
+                          className="rounded-xl cursor-pointer w-full h-auto object-contain"
+                          alt="Dashboard Img"
+                          title="Click to maximize"
+                          aria-label="Dashboard Img"
+                        />
+                      </DialogTrigger>
+                      <DialogContent>
+                        <img
+                          src={section.img}
+                          alt="Dashboard Img"
+                          aria-label="Dashboard Img"
+                        />
+                      </DialogContent>
+                  </Dialog>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
       
       <Separator />
@@ -139,7 +153,7 @@ export default function ProjectDetails() {
           {project.skillsDemonstrated?.map((skill, index) => (
             <li key={index}>
               <span className="font-bold bg-muted px-2 py-1 rounded-md text-foreground">{skill.key}:</span>{" "}
-              <span className="text-muted-foreground">{skill.value}</span>
+              <span className="text-foreground/70">{skill.value}</span>
             </li>
           ))}
         </ul>

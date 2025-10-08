@@ -31,16 +31,22 @@ interface KPITableProps {
   className?: string
 }
 
-export function KPITable({ items, className}: KPITableProps) {
+// Helper to convert values like "2.3M", "323K" into numbers
+function parseNumericValue(value: string): number {
+  if (!value) return 0
+  const cleaned = value.replace(/[^0-9.]/g, "")
+  if (value.includes("M")) return parseFloat(cleaned) * 1_000_000
+  if (value.includes("K")) return parseFloat(cleaned) * 1_000
+  return parseFloat(cleaned)
+}
+
+export function KPITable({ items, className }: KPITableProps) {
   const [sorting, setSorting] = React.useState<SortingState>([])
 
-  // columns config for KPI table
   const columns: ColumnDef<KPIItem>[] = [
     {
       accessorKey: "key",
-      header: () => (
-        <p>Metric</p>
-      ),
+      header: () => <p>Metric</p>,
       cell: ({ row }) => (
         <div className="font-bold">{row.getValue("key")}</div>
       ),
@@ -63,6 +69,11 @@ export function KPITable({ items, className}: KPITableProps) {
         </Button>
       ),
       cell: ({ row }) => <div>${row.getValue("value")}</div>,
+      sortingFn: (a, b, columnId) => {
+        const aVal = parseNumericValue(a.getValue(columnId))
+        const bVal = parseNumericValue(b.getValue(columnId))
+        return aVal === bVal ? 0 : aVal > bVal ? 1 : -1
+      },
     },
   ]
 
@@ -85,7 +96,10 @@ export function KPITable({ items, className}: KPITableProps) {
                 <TableHead key={header.id}>
                   {header.isPlaceholder
                     ? null
-                    : flexRender(header.column.columnDef.header, header.getContext())}
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
                 </TableHead>
               ))}
             </TableRow>
