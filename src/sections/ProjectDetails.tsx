@@ -66,7 +66,7 @@ return (
                         <DialogTrigger>
                             <img 
                                 src={src} 
-                                className="max-w-3xl rounded-md cursor-pointer mt-3"
+                                className="md:max-w-3xl rounded-md cursor-pointer mt-3"
                                 title="Show Picture" 
                                 alt="Project Image" 
                             />
@@ -74,7 +74,7 @@ return (
                         <DialogContent>
                           <img 
                               src={src} 
-                              className="max-w-4xl rounded-md"
+                              className="md:max-w-4xl rounded-md"
                               title="Show Picture" 
                               alt="Project Image" 
                           />
@@ -90,8 +90,10 @@ return (
           <Separator />
           <div>
             <HeaderSection text="KPIs at a Glance" />
-            <img className="rounded-2xl" src={project.KPIs?.img} alt="KPIs illustration" />
-            <KPITable className="my-2 md:my-3" items={project.KPIs?.items ?? []}/>
+            <div className=" flex justify-center md:justify-start items-center md:items-start flex-col">
+              <img className="rounded-2xl" src={project.KPIs?.img} alt="KPIs illustration" />
+              <KPITable className="my-2 md:my-3" items={project.KPIs?.items ?? []}/>
+            </div>
           </div>
         </>
       )}
