@@ -59,14 +59,13 @@ return (
 
       <div>
         <HeaderSection text="Description" />
-        <p className="mt-3 text:base md:text-lg">{project.detailedDescription}</p>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex items-center sm:items-start gap-2 justify-center">
             {project.imgSrc.map((src, index) => {
               return <Dialog key={index}>
                         <DialogTrigger>
                             <img 
                                 src={src} 
-                                className="md:max-w-3xl rounded-md cursor-pointer mt-3"
+                                className="rounded-md h-100 cursor-pointer mt-3"
                                 title="Show Picture" 
                                 alt="Project Image" 
                             />
@@ -82,6 +81,7 @@ return (
                       </Dialog>
             })}
         </div>
+        <p className="mt-3 text:base md:text-lg">{project.detailedDescription}</p>
       </div>
       
       {/* KPIs */}
