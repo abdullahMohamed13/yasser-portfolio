@@ -63,12 +63,21 @@ return (
             {project.imgSrc.map((src, index) => {
               return <Dialog key={index}>
                         <DialogTrigger>
+                          {project.imgSrc.length > 1 ? (
                             <img 
                                 src={src} 
                                 className="rounded-md h-115 cursor-pointer mt-3"
                                 title="Show Picture" 
                                 alt="Project Image" 
                             />
+                          ) : (
+                            <img 
+                                src={src} 
+                                className="rounded-md w-full max-w-5xl h-auto cursor-pointer mt-3"
+                                title="Show Picture" 
+                                alt="Project Image" 
+                            />
+                          )}
                         </DialogTrigger>
                         <DialogContent>
                           <img 
@@ -81,7 +90,7 @@ return (
                       </Dialog>
             })}
         </div>
-        <p className="mt-3 text:base md:text-lg">{project.detailedDescription}</p>
+        <p className="mt-3 text:base md:text-lg text-center md:text-left">{project.detailedDescription}</p>
       </div>
       
       {/* KPIs */}
@@ -90,7 +99,7 @@ return (
           <Separator />
           <div>
             <HeaderSection text="KPIs at a Glance" />
-            <div className=" flex justify-center md:justify-start items-center md:items-start flex-col">
+            <div className=" flex justify-center mt-3 md:justify-start items-center md:items-start flex-col">
               <img className="rounded-2xl" src={project.KPIs?.img} alt="KPIs illustration" />
               <KPITable className="my-2 md:my-3" items={project.KPIs?.items ?? []}/>
             </div>
