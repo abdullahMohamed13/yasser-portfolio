@@ -23,10 +23,9 @@ import HeaderSection from "@/components/HeaderSection";
 import { KPITable } from "@/components/kpi-table";
 
 // icons
-import {
-  MdOutlineInsights,
-} from "react-icons/md"
+import { MdOutlineInsights } from "react-icons/md"
 import { handleNavigation } from "@/utils/handleNavigation";
+import { GoDotFill } from "react-icons/go";
 
 export default function ProjectDetails() {
   const navigate = useNavigate()
@@ -60,7 +59,29 @@ return (
 
       <div>
         <HeaderSection text="Description" />
-        <p className="mt-2 text:base md:text-lg">{project.detailedDescription}</p>
+        <p className="mt-3 text:base md:text-lg">{project.detailedDescription}</p>
+        <div className="flex flex-col items-center justify-center">
+            {project.imgSrc.map((src, index) => {
+              return <Dialog key={index}>
+                        <DialogTrigger>
+                            <img 
+                                src={src} 
+                                className="max-w-3xl rounded-md cursor-pointer mt-3"
+                                title="Show Picture" 
+                                alt="Project Image" 
+                            />
+                        </DialogTrigger>
+                        <DialogContent>
+                          <img 
+                              src={src} 
+                              className="max-w-4xl rounded-md"
+                              title="Show Picture" 
+                              alt="Project Image" 
+                          />
+                        </DialogContent>
+                      </Dialog>
+            })}
+        </div>
       </div>
       
       {/* KPIs */}
@@ -69,13 +90,13 @@ return (
           <Separator />
           <div>
             <HeaderSection text="KPIs at a Glance" />
-            <KPITable className="my-2 md:my-3" items={project.KPIs?.items ?? []}/>
             <img className="rounded-2xl" src={project.KPIs?.img} alt="KPIs illustration" />
+            <KPITable className="my-2 md:my-3" items={project.KPIs?.items ?? []}/>
           </div>
         </>
       )}
 
-      <Separator />
+      <Separator /> 
 
       <div>
         <HeaderSection text="Insights breakdown" />
@@ -102,7 +123,21 @@ return (
                         </h3>
                       )}
                     <p className="leading-relaxed">
-                      <span className="font-bold text-xl">-</span> {detail.text}
+                      {typeof(detail.text) === 'string' ?
+                        (
+                          <>
+                            <span className="font-bold text-2xl mr-1.5">-</span>{detail.text}
+                          </>
+                        ) :
+                        (
+                          <>
+                          {detail.text?.map((phrase, index) => {
+                            return <div key={index} className="flex items-center gap-1">
+                              <GoDotFill /> {phrase}
+                            </div>
+                          })}
+                        </>
+                      )}
                     </p>
                     {/* Decision Section */}
                     {detail.decision && (

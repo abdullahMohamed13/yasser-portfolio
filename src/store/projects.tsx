@@ -29,7 +29,7 @@ export interface ProjectProps {
             header?: string
             details: {
                 title?: string
-                text?: string
+                text?: string | string[]
                 decision?: string
             }[]
         }[]
@@ -76,7 +76,7 @@ export const projects: ProjectProps[] = [
             },
             {
                 name: 'Linkedin Post',
-                href: '',
+                href: 'https://www.linkedin.com/posts/yasser-allam-4b02ab331_powerbi-customeranalytics-marketinganalytics-activity-7381533784648597505-QM2f?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEeKCYUB2f05TmAQBvRvCLK8mgQqJSaN2fg',
                 icon: <FaLinkedin className='cursor-pointer hover:text-[#0a66c2]' size={50} />
         }],
         techStack: [
@@ -295,7 +295,9 @@ export const projects: ProjectProps[] = [
                             },
                             {
                                 title: 'Category & Product Insights',
-                                text: 'Office Supplies lead sales (60.3%); Phones and Chairs top products.'
+                                text: ["Office Supplies contribute the most sales (60.3%)",
+                                    "Phones and Chairs are top-performing products"
+                                ] 
                             },
                             {
                                 title: 'Customer Segmentation',
@@ -308,7 +310,10 @@ export const projects: ProjectProps[] = [
                         header: 'Discount Analysis',
                         details: [
                             {
-                                text: "High discounts reduce profit; Tables and Bookcases drive losses."
+                                text: [
+                                    "Higher discounts are negatively correlated with profit, indicating that aggressive discounting is hurting profitability.",
+                                    "Tables and Bookcases are causing losses, signaling areas to review pricing or strategy"
+                                ]
                             }
                         ]
                     },
@@ -318,7 +323,7 @@ export const projects: ProjectProps[] = [
                         details: [
                             {
                                 title: 'Regional Analysis',
-                                text: "West & East lead sales; South shows weaker profit margins."
+                                text: "West & East lead sales, South shows weaker profit margins."
                             },
                             {
                                 title: 'City-level Breakdown',
@@ -446,7 +451,12 @@ export const projects: ProjectProps[] = [
                             },
                             {
                                 title: 'Job Stats (Table)',
-                                text: "A detailed table summarizes job counts, median yearly and hourly salaries, and trend sparklines for each role, showing that Data Engineers hold the highest job count (≈129K), senior roles such as Senior Data Scientist and Machine Learning Engineer earn the top salaries ($140K+), and the overall data job market remains diverse with steadily increasing salaries across seniority levels."
+                                text: [
+                                    "A detailed table summarizing job count, median salaries (yearly and hourly), and trend sparklines for each role:",
+                                    "Data Engineer has the highest job count (≈129K).",
+                                    "Senior roles like Senior Data Scientist and Machine Learning Engineer have the highest salaries ($140K+).",
+                                    "The data job market remains diverse, with a steady salary increase across seniority levels.",
+                                ]
                             },
                         ]
                     },

@@ -6,7 +6,7 @@ export default function ScrollToTopComponent () {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 200) {
+      if (window.scrollY > 500) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -26,7 +26,7 @@ export default function ScrollToTopComponent () {
 
   return (
     <div>
-      {isVisible && (
+      {isVisible && (   
         <button
           onClick={scrollToTop}
           className="cursor-pointer hover:animate-bounce fixed bottom-6 right-6 p-3 rounded-full bg-primary text-white shadow-lg hover:bg-primary/70 transition-all"
