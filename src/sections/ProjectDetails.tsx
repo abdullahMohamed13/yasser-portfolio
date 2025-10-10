@@ -65,7 +65,7 @@ return (
                         <DialogTrigger>
                             <img 
                                 src={src} 
-                                className="rounded-md h-100 cursor-pointer mt-3"
+                                className="rounded-md h-115 cursor-pointer mt-3"
                                 title="Show Picture" 
                                 alt="Project Image" 
                             />
