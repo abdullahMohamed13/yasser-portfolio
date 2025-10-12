@@ -59,14 +59,14 @@ return (
 
       <div>
         <HeaderSection text="Description" />
-        <div className="flex items-center sm:items-start gap-2 justify-center">
+        <div className="flex flex-col md:flex-row items-center sm:items-start gap-2 justify-center">
             {project.imgSrc.map((src, index) => {
               return <Dialog key={index}>
                         <DialogTrigger>
                           {project.imgSrc.length > 1 ? (
                             <img 
                                 src={src} 
-                                className="rounded-md h-115 cursor-pointer mt-3"
+                                className="rounded-md md:h-115 cursor-pointer mt-3"
                                 title="Show Picture" 
                                 alt="Project Image" 
                             />

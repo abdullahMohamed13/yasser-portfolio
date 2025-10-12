@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge";
 
 export default function About() {
 
+    // let words;
+
     return <section id="about">
 
         <HeroSection />
@@ -33,6 +35,13 @@ export default function About() {
                 decisions through data, while continuously growing my skills and exploring new technologies in the data
                 field.
             </p>
+            
+            {/* <TextGenerateEffect 
+              words={words}
+              className="text-2xl text-center md:text-left pb-8 pt-8"
+              duration={0.6}
+              staggerDelay={0.15}
+            /> */}
         </div>
     </section>
 }
