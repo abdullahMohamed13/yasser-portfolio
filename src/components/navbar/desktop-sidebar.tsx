@@ -128,7 +128,7 @@ export function AppSidebar() {
       {/* Footer */}
       <SidebarFooter className="flex items-start">
         <Button size='sm' variant='destructive'>
-            <a href="/resume.pdf" download>
+            <a href="/Yasser-Allam-Resume.pdf" download>
                 Download My Resume
             </a>
         </Button>

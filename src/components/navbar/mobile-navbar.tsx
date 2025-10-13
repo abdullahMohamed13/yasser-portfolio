@@ -154,7 +154,7 @@ export const NavbarMobile = forwardRef<HTMLElement, NavbarProps>(
               variant="outline"
               className="text-sm cursor-pointer border border-border font-medium px-4 h-9 rounded-md"
             >
-                <a href="/resume.pdf" download>{ctaText}</a>
+                <a href="/Yasser-Allam-Resume.pdf" download>{ctaText}</a>
             </Button>
           </div>
         </div>
