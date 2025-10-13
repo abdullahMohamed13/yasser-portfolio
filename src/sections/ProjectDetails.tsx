@@ -26,8 +26,11 @@ import { KPITable } from "@/components/kpi-table";
 import { MdOutlineInsights } from "react-icons/md"
 import { handleNavigation } from "@/utils/handleNavigation";
 import { GoDotFill } from "react-icons/go";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { useState } from "react";
 
 export default function ProjectDetails() {
+  const [selectedImg, setSelectedImg] = useState<string>('')
   const navigate = useNavigate()
   const location = useLocation()
   const { name } = useParams<{ name: string }>();
@@ -40,8 +43,8 @@ export default function ProjectDetails() {
     </div>;
 
 return (
-    <main className="w-full flex flex-col gap-4 md:gap-6">
-      <Breadcrumb className="mb-2">
+    <main className="w-full flex flex-col gap-3 md:gap-5">
+      <Breadcrumb className="mb-2 flex items-center justify-center md:items-start md:justify-start">
         <BreadcrumbList>
           <BreadcrumbItem className="cursor-pointer" onClick={() => navigate('/')}>
             <BreadcrumbLink>Home</BreadcrumbLink>
@@ -57,38 +60,72 @@ return (
         </BreadcrumbList>
       </Breadcrumb>
 
+      {/* Description section */}
       <div>
         <HeaderSection text="Description" />
-        <div className="flex flex-col md:flex-row items-center sm:items-start gap-2 justify-center">
-            {project.imgSrc.map((src, index) => {
-              return <Dialog key={index}>
-                        <DialogTrigger>
-                          {project.imgSrc.length > 1 ? (
-                            <img 
-                                src={src} 
-                                className="rounded-md md:h-115 cursor-pointer mt-3"
-                                title="Show Picture" 
-                                alt="Project Image" 
+        <div className="flex items-center justify-center">
+          {project.imgSrc.length > 1 ? (
+            <div className="flex flex-col">
+              <p className="mt-10 flex items-center justify-center text-sm font-semibold text-gray-500 md:hidden">
+                Slide for more photos →
+              </p>
+              <Dialog>
+
+                <div className="w-full flex justify-center">
+                  <Carousel>
+                    <CarouselContent>
+                      {project.imgSrc.map((src, index) => (
+                        <CarouselItem key={index} className="flex justify-center">
+                          <DialogTrigger asChild>
+                            <img
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                setSelectedImg(src)
+                              }}
+                              src={src}
+                              className="rounded-md sm:h-auto lg:h-160 cursor-pointer mt-3"
+                              title="Show Picture"
+                              alt="Project Image"
                             />
-                          ) : (
-                            <img 
-                                src={src} 
-                                className="rounded-md w-full max-w-5xl h-auto cursor-pointer mt-3"
-                                title="Show Picture" 
-                                alt="Project Image" 
-                            />
-                          )}
-                        </DialogTrigger>
-                        <DialogContent>
-                          <img 
-                              src={src} 
-                              className="md:max-w-4xl rounded-md"
-                              title="Show Picture" 
-                              alt="Project Image" 
-                          />
-                        </DialogContent>
-                      </Dialog>
-            })}
+                          </DialogTrigger>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="hidden md:flex md:mx-28" />
+                    <CarouselNext className="hidden md:flex md:mr-28" />
+                  </Carousel>
+                </div>
+
+                <DialogContent className="flex justify-center">
+                  {selectedImg && (
+                    <img
+                    src={selectedImg}
+                      className="md:max-w-4xl rounded-md"
+                      />
+                    )}
+                </DialogContent>
+              </Dialog>
+            </div>
+          ) : (
+            <Dialog>
+              <DialogTrigger>
+                <img 
+                    src={project.imgSrc[0]}
+                    className="rounded-md w-full max-w-5xl h-auto cursor-pointer mt-3"
+                    title="Show Picture" 
+                    alt="Project Image" 
+                />
+              </DialogTrigger>
+              <DialogContent>
+                <img 
+                    src={project.imgSrc[0]} 
+                    className="md:max-w-4xl rounded-md"
+                    title="Show Picture" 
+                    alt="Project Image" 
+                />
+              </DialogContent>
+            </Dialog>
+          )}
         </div>
         <p className="mt-3 text:base md:text-lg text-center md:text-left">{project.detailedDescription}</p>
       </div>
@@ -192,6 +229,7 @@ return (
       </div>
       
       <Separator />
+
       {/* Skills */}
       <div>
         <HeaderSection text="Tools & Skills Demonstrated" />
