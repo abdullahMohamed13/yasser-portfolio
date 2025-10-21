@@ -18,7 +18,6 @@ import { Button } from "../ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
 
 // Animated components
-import { TextRevealButton } from "../ui/shadcn-io/text-reveal-button"
 import TypingText from "@/components/ui/shadcn-io/typing-text/index";
 // Store
 import { contacts, handleWhatsappClick } from "@/store/contacts";
@@ -35,13 +34,21 @@ export function AppSidebar() {
   const location = useLocation();
 
   return (
-    <Sidebar>
-      <SidebarHeader className="pt-3.5">
-          <div className="flex justify-between items-center">
-              <img className="w-35 h-35 border-3 border-border rounded-full" src="/me.png" alt="My Photo" />
-              <ModeToggle />
+    <Sidebar className='bg-primary/40'>
+      <SidebarHeader className="pt-10">
+          <div className="flex justify-between items-center mb-1">
+
+            <div className='relative flex ml-3.5 items-center'>
+              <div className='text-2xl font-bold'>
+                Yasser Allam
+              </div>
+
+              {/* THE LINE NEXT TO THE YASSER ALLAM NAME */}
+              <div className='absolute -left-3.5 bg-primary w-1.5 h-full' />
+            </div>
+
+            <ModeToggle />
           </div>
-          <TextRevealButton variant="gradient" text="Yasser Allam" />
 
           <div className='flex items-center gap-1'>
             <TypingText
@@ -89,17 +96,17 @@ export function AppSidebar() {
                             variant='link'
                             className="w-full flex gap-2 justify-start"
                             onClick={() => handleNavigation(item.href, navigate, location)}
-                            >
+                          >
                             {item.icon}
                             <span>{item.label}</span>
                           </Button>
                           <div>
                             {projects.map((proj, index) => {
                               return <Button
-                               key={index}
+                                key={index}
                                 variant='link'
                                 className="ml-1 w-full text-muted-foreground hover:text-primary cursor-pointer justify-start">
-                                  <Link className="flex items-center gap-1" to={`/projects/${proj.name}`}>
+                                  <Link className="flex text-[14px] items-center gap-1" to={`/projects/${proj.name}`}>
                                     <FaLink />{proj.name}
                                   </Link>
                               </Button>

@@ -1,6 +1,7 @@
 import HeaderSection from "@/components/HeaderSection";
-import HeroSection from "./HeroOnSmallScreens";
 import { Badge } from "@/components/ui/badge";
+import { contacts, handleWhatsappClick } from "@/store/contacts";
+import { SiWhatsapp } from "react-icons/si";
 
 export default function About() {
 
@@ -8,11 +9,11 @@ export default function About() {
 
     return <section id="about">
 
-        <HeroSection />
+        {/* About section on mobile */}
         
-        <HeaderSection className="mt-10 md:mt-0" text="Hey There!" icon={<span className="wave">👋</span>}/>
+        <HeaderSection className="mt-4 md:mt-0" text="Hey There!" icon={<span className="wave">👋</span>}/>
             
-        <div className="mt-5 flex flex-col text-lg text-center md:text-left gap-3">
+        <div className="mt-5 flex flex-col text-lg text-center md:text-left gap-5">
             <p>
                 I am <span className="text-primary font-semibold">Yasser Allam</span>,
                 a <strong className="text-primary"> Data Analyst </strong>
@@ -27,6 +28,7 @@ export default function About() {
                 to turn raw data
                 into meaningful insights.
             </p>
+
             <p>
                 I've already built several projects
                 (<a className="underline text-primary" href="#projects">check them out below 👇</a>)
@@ -36,12 +38,24 @@ export default function About() {
                 field.
             </p>
             
-            {/* <TextGenerateEffect 
-              words={words}
-              className="text-2xl text-center md:text-left pb-8 pt-8"
-              duration={0.6}
-              staggerDelay={0.15}
-            /> */}
+            <div className="md:hidden mt-4 flex justify-center flex-col items-center gap-4">
+
+                <Badge className="rounded-sm text-white text-xl">
+                    Contact Me Here:
+                </Badge>
+
+                <div className="flex gap-2">
+                    {contacts.map((contact) => {
+                        return <a key={contact.value} target="_blank" aria-label={contact.value} href={contact.href}>
+                        {contact.icon}
+                        </a>
+                    })}
+                    <i onClick={handleWhatsappClick} className="relative">
+                        <SiWhatsapp color="#25d366" className="w-7 h-7 cursor-pointer" />
+                    </i>
+                </div>
+
+            </div>
         </div>
     </section>
 }
