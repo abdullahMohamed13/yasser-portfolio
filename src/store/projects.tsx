@@ -4,6 +4,9 @@ import ExcelLogo from '/skills/Excel.png'
 import MicrosoftPQLogo from '/skills/microsoft-power-query.png'
 import DaxLogo from '/skills/dax.png'
 
+const githubIcon = (size: number = 50) => <FaGithub className='cursor-pointer hover:text-foreground/50' size={size} />;
+const linkedinIcon = (size: number = 50) => <FaLinkedin className='cursor-pointer hover:text-[#0a66c2]' size={size} />;
+
 export interface ProjectProps {
     // FOR ProjectCard in home page
     id: number
@@ -50,6 +53,22 @@ export interface ProjectProps {
 }
 
 const iconSize = 'w-6 h-6'
+// Skills icons
+const pqStack = { name: 'PQ', icon: <img src={MicrosoftPQLogo} alt="PQ" className={iconSize} /> };
+const powerBIStack = { name: 'Power BI', icon: <img src={PowerBILogo} alt="Power BI" className={iconSize} /> };
+const excelStack = { name: 'Excel', icon: <img src={ExcelLogo} alt="Excel" className={iconSize} /> };
+const daxStack = { name: 'DAX', icon: <img src={DaxLogo} alt="DAX" className={iconSize} /> };
+
+const githubLink = (href: string, size = 50) => ({
+    name: 'Github Repo',
+    href,
+    icon: githubIcon(size),
+});
+const linkedinLink = (href: string, size = 50) => ({
+    name: 'Linkedin Post',
+    href,
+    icon: linkedinIcon(size),
+});
 
 export const projects: ProjectProps[] = [
     {
@@ -69,34 +88,10 @@ export const projects: ProjectProps[] = [
             'What impact do subscription status have on spending?',
         ],
         links: [
-            {
-                name: 'Github Repo',
-                href: 'https://github.com/YasserAllam/Customer-Marketing-Analysis',
-                icon: <FaGithub className='cursor-pointer hover:text-foreground/50' size={50} />
-            },
-            {
-                name: 'Linkedin Post',
-                href: 'https://www.linkedin.com/posts/yasser-allam-4b02ab331_powerbi-customeranalytics-marketinganalytics-activity-7381533784648597505-QM2f?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEeKCYUB2f05TmAQBvRvCLK8mgQqJSaN2fg',
-                icon: <FaLinkedin className='cursor-pointer hover:text-[#0a66c2]' size={50} />
-        }],
-        techStack: [
-            {
-                name: 'PQ',
-                icon: <img src={MicrosoftPQLogo} alt="Microsoft Power Query Logo" className={iconSize} />
-            },
-            {
-                name: 'Power BI',
-                icon: <img src={PowerBILogo} alt="Power BI Logo" className={iconSize} />,
-            },
-            {
-                name: 'Excel',
-                icon: <img src={ExcelLogo} alt="Excel Logo" className={iconSize} />
-            },
-            {
-                name: 'DAX',
-                icon: <img src={DaxLogo} alt="DAX Logo" className={iconSize} />
-            },
-            ],
+            githubLink('https://github.com/YasserAllam/Customer-Marketing-Analysis'),
+            linkedinLink('https://www.linkedin.com/posts/yasser-allam-4b02ab331_powerbi-customeranalytics-marketinganalytics-activity-7381533784648597505-QM2f?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEeKCYUB2f05TmAQBvRvCLK8mgQqJSaN2fg'),
+        ],
+        techStack: [pqStack, powerBIStack, excelStack, daxStack],
         skillsDemonstrated: [
             {
                 key: '🧹 Data Cleaning & Preparation',
@@ -208,34 +203,10 @@ export const projects: ProjectProps[] = [
         description: 'An interactive Power BI dashboard that visualizes key KPIs, sales trends, and customer insights—helping businesses identify top products, assess discount impact, and make data-driven decisions to boost growth and profitability.',
         detailedDescription: "This interactive Sales Dashboard was built in Power BI to analyze and monitor key business performance metrics. It provides a clear view of sales performance, profitability, discount impact, and customer trends, allowing stakeholders to make data-driven decision",
         links: [
-            {
-                name: 'Github Repo',
-                href: 'https://github.com/YasserAllam/Sales-Dashboard',
-                icon: <FaGithub className='cursor-pointer hover:text-foreground/50' size={50} />
-            },
-            {
-                name: 'Linkedin Post',
-                href: 'https://www.linkedin.com/posts/yasser-allam-4b02ab331_powerbi-dataanalytics-businessintelligence-activity-7368121539352813569-GtPJ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEeKCYUB2f05TmAQBvRvCLK8mgQqJSaN2fg',
-                icon: <FaLinkedin className='cursor-pointer hover:text-[#0a66c2]' size={50} />
-        }],
-        techStack: [
-            {
-                name: 'PQ',
-                icon: <img src={MicrosoftPQLogo} alt="Microsoft Power Query Logo" className={iconSize} />
-            },
-            {
-                name: 'Power BI',
-                icon: <img src={PowerBILogo} alt="Power BI Logo" className={iconSize} />,
-            },
-            {
-                name: 'Excel',
-                icon: <img src={ExcelLogo} alt="Excel Logo" className={iconSize} />
-            },
-            {
-                name: 'DAX',
-                icon: <img src={DaxLogo} alt="DAX Logo" className={iconSize} />
-            },
-            ],
+            githubLink('https://github.com/YasserAllam/Sales-Dashboard'),
+            linkedinLink('https://www.linkedin.com/posts/yasser-allam-4b02ab331_powerbi-dataanalytics-businessintelligence-activity-7368121539352813569-GtPJ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEeKCYUB2f05TmAQBvRvCLK8mgQqJSaN2fg'),
+        ],
+        techStack: [pqStack, powerBIStack, excelStack, daxStack],
         skillsDemonstrated: [
             {
                 key: '🧹 Data Cleaning & Preparation',
@@ -343,30 +314,10 @@ export const projects: ProjectProps[] = [
         detailedDescription: 'This dashboard was created for Job Seekers, Job Transtioners, and Job Sweepers to solve a common problem: information about the data job market is scattered and hard to grasp. Using a real-world dataset of 2024 data science job posting (Including titles, salaries, and locations), this project provides a single, easy-to-use interface to explore market trends and compernsation. I made this dashboard as part of a learning tutorial was going through',
         conclusion: 'This dashboard showcases how Power BI can transform raw job posting data into a powerful tool for career analysis. It allows users to slice, filter, and drill through data to make informed decisions about their career path.',
         links: [
-            {
-                name: 'Github Repo',
-                href: 'https://github.com/YasserAllam/Power-bi-data-jobs-dashboard',
-                icon: <FaGithub className='cursor-pointer hover:text-foreground/50' size={23} />
-            },
-            {
-                name: 'Linkedin Post',
-                href: 'https://www.linkedin.com/posts/yasser-allam-4b02ab331_powerbi-datavisualization-businessintelligence-activity-7365237367600828417-J9Qg?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEeKCYUB2f05TmAQBvRvCLK8mgQqJSaN2fg',
-                icon: <FaLinkedin className='cursor-pointer hover:text-[#0a66c2]' size={23} />
-        }],
-        techStack: [
-            {
-                name: 'PQ',
-                icon: <img src={MicrosoftPQLogo} alt="Microsoft Power Query Logo" className={iconSize} />,
-            },
-            {
-                name: 'Power BI',
-                icon: <img src={PowerBILogo} alt="Power BI Logo" className={iconSize} />,
-            },
-            {
-                name: 'DAX',
-                icon:<img src={DaxLogo} alt="DAX Logo" className={iconSize} />,
-            },
+            githubLink('https://github.com/YasserAllam/Power-bi-data-jobs-dashboard', 23),
+            linkedinLink('https://www.linkedin.com/posts/yasser-allam-4b02ab331_powerbi-datavisualization-businessintelligence-activity-7365237367600828417-J9Qg?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEeKCYUB2f05TmAQBvRvCLK8mgQqJSaN2fg', 23),
         ],
+        techStack: [pqStack, powerBIStack, daxStack],
         skillsDemonstrated: [
             {
                 key: '⚙️ Data Transformation (ETL) with Power Query',
