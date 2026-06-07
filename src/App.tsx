@@ -3,6 +3,7 @@ import { Separator } from "./components/ui/separator"
 import About from "./sections/About"
 import ProjectSection from "./sections/ProjectsSection"
 import Skills from "./sections/Skills"
+import ContactSection from "./sections/ContactSection"
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
@@ -10,10 +11,8 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    // Check if there's a hash in the URL
     if (location.hash) {
       const sectionId = location.hash.replace('#', '');
-      // Small delay to ensure DOM is ready
       const timeoutId = setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -31,6 +30,8 @@ function App() {
       <ProjectSection />
       <Separator />
       <Skills />
+      <Separator />
+      <ContactSection />
     </div>
 }
 
