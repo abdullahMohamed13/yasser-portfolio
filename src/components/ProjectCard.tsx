@@ -17,12 +17,14 @@ import { Button } from "./ui/button";
 
 export default function ProjectCard({id, imgSrc, name, description, links, techStack}: ProjectProps) {
     const navigate = useNavigate()
+    const firstImg = imgSrc[0]
+    const projectPath = `/projects/${name}`
     return (
         <Card key={id} className="relative hover:scale-102 transition-all hover:shadow-xl flex flex-col">
             <CardHeader className="flex flex-col">
                 <CardTitle className="text-lg leading-5.5 w-[90%]">{name}</CardTitle>
                 <CardAction
-                    onClick={() => navigate(`/projects/${name}`)}
+                    onClick={() => navigate(projectPath)}
                     className="group absolute top-3 right-2.5 border border-border shadow-2xl p-2 rounded-3xl cursor-pointer"
                 >
                     <FaExpandArrowsAlt
@@ -34,13 +36,13 @@ export default function ProjectCard({id, imgSrc, name, description, links, techS
             </CardHeader>
 
             <CardContent className="flex flex-col gap-3 flex-1">
-                <img src={imgSrc[0]} alt="Project Image" className="md:hidden rounded-md" />
+                <img src={firstImg} alt="Project Image" className="md:hidden rounded-md" />
 
                 <div className="hidden md:flex">
                     <Dialog>
                         <DialogTrigger>
                             <img 
-                                src={imgSrc[0]} 
+                                src={firstImg} 
                                 className="rounded-md cursor-pointer"
                                 title="Show Picture" 
                                 alt="Project Image" 
@@ -63,7 +65,7 @@ export default function ProjectCard({id, imgSrc, name, description, links, techS
                                     <CarouselNext className="-mx-[20px]" />
                                 </Carousel>
                             ) : (
-                                <img src={imgSrc[0]} alt="Project Image" />
+                                <img src={firstImg} alt="Project Image" />
                             )}
                         </DialogContent>
                     </Dialog>
