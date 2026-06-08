@@ -98,7 +98,6 @@ export default function Skills() {
                 <Badge
                   key={index}
                   className="flex justify-start gap-2 py-3 px-2 md:px-4 w-full h-full"
-                  variant="secondary"
                 >
                   {skill.icon}
                   <p className="text-xs md:text-sm">{skill.name}</p>

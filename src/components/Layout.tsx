@@ -10,10 +10,10 @@ export default function Layout() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="w-full px-4 flex flex-col md:flex-row gap-2 mb-10"
+      className="w-full flex flex-col md:flex-row gap-2 mb-10"
     >
       <ResponsiveNav />
-      <div className="my-5 md:my-15 flex-1 flex flex-col min-h-[calc(100vh-10rem)]">
+      <div className="my-5 px-4 md:my-15 flex-1 flex flex-col min-h-[calc(100vh-10rem)]">
         <div className="flex-1">
           <Outlet />
         </div>

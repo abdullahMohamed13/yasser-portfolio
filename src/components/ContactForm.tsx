@@ -4,16 +4,26 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import emailjs from '@emailjs/browser';
+
+function getPrimaryColor() {
+  return getComputedStyle(document.documentElement).getPropertyValue('--primary').trim()
+}
+
+function hexToRgb(hex: string) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+  return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '77, 150, 255'
+}
 
 function DotMap() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   const routes = [
-    { start: { x: 100, y: 150, delay: 0 }, end: { x: 200, y: 80, delay: 2 }, color: "#228B22" },
-    { start: { x: 200, y: 80, delay: 2 }, end: { x: 260, y: 120, delay: 4 }, color: "#228B22" },
-    { start: { x: 50, y: 50, delay: 1 }, end: { x: 150, y: 180, delay: 3 }, color: "#228B22" },
-    { start: { x: 280, y: 60, delay: 0.5 }, end: { x: 180, y: 180, delay: 2.5 }, color: "#228B22" },
+    { start: { x: 100, y: 150, delay: 0 }, end: { x: 200, y: 80, delay: 2 } },
+    { start: { x: 200, y: 80, delay: 2 }, end: { x: 260, y: 120, delay: 4 } },
+    { start: { x: 50, y: 50, delay: 1 }, end: { x: 150, y: 180, delay: 3 } },
+    { start: { x: 280, y: 60, delay: 0.5 }, end: { x: 180, y: 180, delay: 2.5 } },
   ];
 
   const generateDots = (width: number, height: number) => {
@@ -67,17 +77,21 @@ function DotMap() {
 
     function drawDots() {
       if (!ctx) return;
+      const primary = getPrimaryColor()
+      const rgb = hexToRgb(primary)
       ctx.clearRect(0, 0, dimensions.width, dimensions.height);
       dots.forEach(dot => {
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, 1, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(34, 139, 34, ${dot.opacity})`;
+        ctx.fillStyle = `rgba(${rgb}, ${dot.opacity})`;
         ctx.fill();
       });
     }
 
     function drawRoutes() {
       if (!ctx) return;
+      const primary = getPrimaryColor()
+      const rgb = hexToRgb(primary)
       const currentTime = (Date.now() - startTime) / 1000;
 
       routes.forEach(route => {
@@ -93,29 +107,29 @@ function DotMap() {
         ctx.beginPath();
         ctx.moveTo(route.start.x, route.start.y);
         ctx.lineTo(x, y);
-        ctx.strokeStyle = route.color;
+        ctx.strokeStyle = primary;
         ctx.lineWidth = 1.5;
         ctx.stroke();
 
         ctx.beginPath();
         ctx.arc(route.start.x, route.start.y, 3, 0, Math.PI * 2);
-        ctx.fillStyle = route.color;
+        ctx.fillStyle = primary;
         ctx.fill();
 
         ctx.beginPath();
         ctx.arc(x, y, 3, 0, Math.PI * 2);
-        ctx.fillStyle = "#228B22";
+        ctx.fillStyle = primary;
         ctx.fill();
 
         ctx.beginPath();
         ctx.arc(x, y, 6, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(34, 139, 34, 0.3)";
+        ctx.fillStyle = `rgba(${rgb}, 0.3)`;
         ctx.fill();
 
         if (progress === 1) {
           ctx.beginPath();
           ctx.arc(route.end.x, route.end.y, 3, 0, Math.PI * 2);
-          ctx.fillStyle = route.color;
+          ctx.fillStyle = primary;
           ctx.fill();
         }
       });
@@ -145,6 +159,27 @@ function DotMap() {
 }
 
 export default function ContactCard() {
+  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+  function validate(name: string, email: string, message: string) {
+    const newErrors: typeof errors = {}
+
+    if (!name.trim()) newErrors.name = 'Please enter your name'
+    if (!email.trim()) newErrors.email = 'Email is required'
+    else if (!emailRegex.test(email)) newErrors.email = 'Please enter a valid email address'
+    if (!message.trim()) newErrors.message = "Don't forget your message"
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  function clearError(field: keyof typeof errors) {
+    setErrors(prev => ({ ...prev, [field]: undefined }))
+  }
+
   return (
     <div className="flex w-full h-full items-center justify-center">
       <motion.div
@@ -153,7 +188,7 @@ export default function ContactCard() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-4xl overflow-hidden rounded-2xl flex bg-card shadow-xl"
       >
-        <div className="hidden md:flex w-1/2 h-[500px] relative overflow-hidden border-r border-border flex-col items-center justify-center p-8">
+        <div className="hidden md:flex w-1/2 relative overflow-hidden border-r border-border flex-col items-center justify-center">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10">
             <DotMap />
             <div className="absolute inset-0 flex flex-col items-center justify-center p-8 z-10">
@@ -230,23 +265,23 @@ export default function ContactCard() {
                 e.preventDefault()
                 const form = e.currentTarget
                 const formData = new FormData(form)
-                const data = {
-                  name: formData.get('name') as string,
-                  email: formData.get('email') as string,
-                  message: formData.get('message') as string,
-                }
+                const name = formData.get('name') as string
+                const email = formData.get('email') as string
+                const message = formData.get('message') as string
 
-                const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement
-                submitBtn.disabled = true
+                if (!validate(name, email, message)) return
+
+                setIsSubmitting(true)
+
+                const time = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) + ' ' + new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
 
                 try {
-                  const res = await fetch('/.netlify/functions/send-email', {
-										method: 'POST',
-										headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data),
-                  })
-
-                  if (!res.ok) throw new Error()
+                  await emailjs.send(
+                    import.meta.env.VITE_EMAIL_JS_SERVICE_ID,
+                    import.meta.env.VITE_EMAIL_JS_TEMPLATE_ID,
+                    { name, email, message, time },
+                    import.meta.env.VITE_EMAIL_JS_PUBLIC_KEY,
+                  )
 
                   toast('Message sent!', {
                     description: "Thanks for reaching out. I'll get back to you soon.",
@@ -257,7 +292,7 @@ export default function ContactCard() {
                     description: 'Please try again later or email me directly.',
                   })
                 } finally {
-                  submitBtn.disabled = false
+                  setIsSubmitting(false)
                 }
               }}
               className="space-y-4"
@@ -271,8 +306,10 @@ export default function ContactCard() {
                   name="name"
                   type="text"
                   placeholder="Your name"
-                  required
+                  className={`dark:bg-black ${errors.name ? 'border-red-500' : ''}`}
+                  onChange={() => clearError('name')}
                 />
+                {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-1.5 text-foreground">
@@ -283,8 +320,10 @@ export default function ContactCard() {
                   name="email"
                   type="email"
                   placeholder="your@email.com"
-                  required
+                  className={`dark:bg-black ${errors.email ? 'border-red-500' : ''}`}
+                  onChange={() => clearError('email')}
                 />
+                {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-1.5 text-foreground">
@@ -295,13 +334,14 @@ export default function ContactCard() {
                   name="message"
                   rows={4}
                   placeholder="Tell me about your project or idea..."
-                  required
-                  className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  onChange={() => clearError('message')}
+                  className={`flex w-full rounded-md border bg-background dark:bg-black px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-primary focus-visible:ring-primary focus-visible:ring-[1px] disabled:cursor-not-allowed disabled:opacity-50 resize-none ${errors.message ? 'border-red-500' : 'border-input'}`}
                 />
+                {errors.message && <p className="text-sm text-red-500 mt-1">{errors.message}</p>}
               </div>
-              <Button type="submit" className="w-full gap-2">
+              <Button type="submit" className="w-full gap-2 text-white" disabled={isSubmitting}>
                 <Send className="h-4 w-4" />
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </Button>
             </form>
 
@@ -314,7 +354,7 @@ export default function ContactCard() {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Email</p>
-                  <p className="font-medium text-foreground">yasserallaam00@gmail.com</p>
+                  <p className="text-xs font-medium text-foreground">yasserallaam00@gmail.com</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 p-4 rounded-lg bg-muted">
@@ -326,7 +366,7 @@ export default function ContactCard() {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Location</p>
-                  <p className="font-medium text-foreground">Egypt</p>
+                  <p className="text-xs font-medium text-foreground">Egypt</p>
                 </div>
               </div>
             </div>

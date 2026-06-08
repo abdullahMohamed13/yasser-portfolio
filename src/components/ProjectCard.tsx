@@ -78,7 +78,7 @@ export default function ProjectCard({id, imgSrc, name, description, links, techS
 
             {/* Footer pushed to the bottom */}
             <div className="flex flex-col gap-2 justify-center items-center">
-                <Badge variant='destructive'>Used Tech Stack</Badge>
+                <Badge variant='secondary'>Used Tech Stack</Badge>
                 <div className="flex gap-2">
                     {techStack.map((stack, index) => (
                         <Tooltip key={index}>

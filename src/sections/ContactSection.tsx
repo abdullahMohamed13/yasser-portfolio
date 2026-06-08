@@ -1,4 +1,4 @@
-import ContactCard from "@/components/ui/travel-connect-signin-1";
+import ContactCard from "@/components/ContactForm";
 
 export default function ContactSection() {
   return (

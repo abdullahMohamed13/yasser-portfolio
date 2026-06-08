@@ -14,6 +14,7 @@ import {
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useNavigate } from "react-router-dom";
 import { FaExpandArrowsAlt } from 'react-icons/fa'
+import { motion } from "framer-motion";
 
 function ProjectImage({ imgSrc, name }: { imgSrc: string[]; name: string }) {
     const firstImg = imgSrc[0]
@@ -88,7 +89,7 @@ function ProjectContent({ proj, index }: { proj: typeof projects[number]; index:
             <p className="text-muted-foreground">{proj.description}</p>
 
             <div className="flex flex-col gap-2 items-end md:items-start">
-                <Badge variant='destructive' className="w-fit">Used Tech Stack</Badge>
+                <Badge variant='default' className="w-fit">Used Tech Stack</Badge>
                 <div className="flex gap-2">
                     {proj.techStack.map((stack, i) => (
                         <Tooltip key={i}>
@@ -132,14 +133,20 @@ function ProjectContent({ proj, index }: { proj: typeof projects[number]; index:
 export default function ProjectsSection() {
     return <section id="projects">
 
-          <HeaderSection text='My Projects' />
+          <HeaderSection text='My Work' />
 
         <div className="mt-8 flex flex-col gap-10">
             {projects.map((proj, index) => (
-                <div key={index}>
+                <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -80 : 80 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
+                >
                     <ProjectContent proj={proj} index={index} />
                     {index < projects.length - 1 && <Separator className="mt-10" />}
-                </div>
+                </motion.div>
             ))}
         </div>
     </section>

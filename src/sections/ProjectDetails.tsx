@@ -23,7 +23,7 @@ import HeaderSection from "@/components/HeaderSection";
 import { KPITable } from "@/components/kpi-table";
 
 // icons
-import { MdOutlineInsights } from "react-icons/md"
+import { GiThorHammer } from "react-icons/gi";
 import { handleNavigation } from "@/utils/handleNavigation";
 import { GoDotFill } from "react-icons/go";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -159,7 +159,7 @@ return (
               >
                 {/* Card Header */}
                 {section.header && (
-                  <Badge variant='destructive' className="self-center md:self-start text-lg">{section.header}</Badge>
+                  <Badge className="bg-input self-center md:self-start text-lg">{section.header}</Badge>
                 )}
 
                 {/* Text Content */}
@@ -190,7 +190,7 @@ return (
                     {/* Decision Section */}
                     {detail.decision && (
                       <div className="flex flex-col md:flex-row items-center gap-2">
-                        <Badge className="text-base" variant='secondary'><MdOutlineInsights className="text-primary w-5 h-5" /> Decision:</Badge>
+                        <Badge className="text-base bg-input"><GiThorHammer className="text-primary" /> Decision:</Badge>
                         {' '}
                         <span className="text-foreground/70">{detail.decision}</span>
                       </div>

@@ -1,5 +1,4 @@
 import './index.css'
-import { Separator } from "./components/ui/separator"
 import About from "./sections/About"
 import ProjectSection from "./sections/ProjectsSection"
 import Skills from "./sections/Skills"
@@ -24,13 +23,10 @@ function App() {
     }
   }, [location]);
 
-  return <div className="flex flex-col gap-8 md:gap-10">
+  return <div className="flex flex-col gap-15 md:gap-23">
       <About />
-      <Separator />
       <ProjectSection />
-      <Separator />
       <Skills />
-      <Separator />
       <ContactSection />
     </div>
 }

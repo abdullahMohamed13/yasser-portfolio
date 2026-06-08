@@ -28,13 +28,14 @@ import { handleNavigation } from '@/utils/handleNavigation'
 import { SiWhatsapp } from 'react-icons/si'
 import { FaLink } from "react-icons/fa";
 import { navigationElements } from '@/store/navigationElements'
+import { CgExternal } from "react-icons/cg";
 
 export function AppSidebar() {
   const navigate = useNavigate();
   const location = useLocation();
 
   return (
-    <Sidebar className='bg-primary/40'>
+    <Sidebar>
       <SidebarHeader className="pt-10">
           <div className="flex justify-between items-center mb-1">
 
@@ -106,7 +107,7 @@ export function AppSidebar() {
                                 key={index}
                                 variant='link'
                                 className="ml-1 w-full text-muted-foreground hover:text-primary cursor-pointer justify-start">
-                                  <Link className="flex text-[14px] items-center gap-1" to={`/projects/${proj.name}`}>
+                                  <Link className="flex text-[13px] items-center gap-1" to={`/projects/${proj.name}`}>
                                     <FaLink />{proj.name}
                                   </Link>
                               </Button>
@@ -133,15 +134,16 @@ export function AppSidebar() {
       </SidebarContent>
 
       {/* Footer */}
-      <SidebarFooter className="flex items-start">
-        <Button size='sm' variant='destructive'>
+      <SidebarFooter className="mb-6 flex items-start">
+        <Button className='text-lg' variant='default'>
             <a href="/Yasser-Allam-Resume.pdf" download>
                 Download My Resume
             </a>
         </Button>
-        <Button variant='outline' size='sm'>
-            <a target="_blank" className='hover:underline' href="https://yasser-portfolio-kappa.vercel.app">
-                My Previous Experience    
+        <Button variant='link'>
+            <a target="_blank" className='flex items-center gap-2 underline' href="https://yasser-portfolio-kappa.vercel.app">
+							My Previous Experience
+							<CgExternal className='size-[22px]' />
             </a>
         </Button>
       </SidebarFooter>
